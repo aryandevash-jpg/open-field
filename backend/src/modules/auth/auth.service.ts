@@ -48,7 +48,6 @@ export const registerUser = async (data: RegisterInput) => {
   // Hash password before storing it
   const passwordHash = await bcrypt.hash(data.password, 12);
   // Create user in PostgreSQL
-  await prisma.$connect();
 
   const user = await prisma.user.create({
     data: {
