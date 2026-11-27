@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id           String                   @id @default(uuid())
+  name         String
+  email        String                   @unique
+  passwordHash String
+  createdAt    DateTime                 @default(now())
+  updatedAt    DateTime                 @updatedAt
+  memberships  OrganizationMembership[]
+  createdTeams Team[]                   @relation("TeamCreatedBy")
+}
+
+model Organization {
+  id          String                   @id @default(uuid())
+  name        String
+  description String?
+  isActive    Boolean                  @default(true)
+  createdAt   DateTime                 @default(now())
+  updatedAt   DateTime                 @updatedAt
+  memberships OrganizationMembership[]
+  teams       Team[]
+
+  @@index([isActive])
+}
+
+model OrganizationMembership {
+  id              String           @id @default(uuid())
+  userId          String
+  organizationId  String
+  role            OrganizationRole @default(MEMBER)
+  status          MembershipStatus @default(ACTIVE)
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  user            User             @relation(fields: [userId], references: [id], onDelete: Restrict)
+  organization    Organization     @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  teamMemberships TeamMembership[]
+
+  @@unique([userId, organizationId])
+  @@unique([id, organizationId])
+  @@index([organizationId, status])
+}
+
+model Team {
+  id              String           @id @default(uuid())
+  organizationId  String
+  name            String
+  isActive        Boolean          @default(true)
+  createdByUserId String
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  organization    Organization     @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  createdBy       User             @relation("TeamCreatedBy", fields: [createdByUserId], references: [id], onDelete: Restrict)
+  memberships     TeamMembership[]
+
+  @@unique([organizationId, name])
+  @@unique([id, organizationId])
+  @@index([organizationId, isActive])
+}
+
+model TeamMembership {
+  id                     String                 @id @default(uuid())
+  teamId                 String
+  organizationId         String
+  membershipId           String
+  isLeader               Boolean                @default(false)
+  createdAt              DateTime               @default(now())
+  team                   Team                   @relation(fields: [teamId, organizationId], references: [id, organizationId], onDelete: Restrict)
+  organizationMembership OrganizationMembership @relation(fields: [membershipId, organizationId], references: [id, organizationId], onDelete: Restrict)
+
+  @@unique([teamId, membershipId])
+  @@index([membershipId])
+}
+
+enum OrganizationRole {
+  OWNER
+  ADMIN
+  COORDINATOR
+  MEMBER
+}
+
+enum MembershipStatus {
+  ACTIVE
+  INVITED
+  SUSPENDED
+  REMOVED
+}
