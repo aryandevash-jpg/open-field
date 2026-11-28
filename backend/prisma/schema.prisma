@@ -8,25 +8,30 @@ datasource db {
 }
 
 model User {
-  id           String                   @id @default(uuid())
-  name         String
-  email        String                   @unique
-  passwordHash String
-  createdAt    DateTime                 @default(now())
-  updatedAt    DateTime                 @updatedAt
-  memberships  OrganizationMembership[]
-  createdTeams Team[]                   @relation("TeamCreatedBy")
+  id              String                   @id @default(uuid())
+  name            String
+  email           String                   @unique
+  passwordHash    String
+  // Platform-wide administrator (manages the shared category taxonomy).
+  // Granted only via scripts/grant-platform-admin.ts, never through the API.
+  isPlatformAdmin Boolean                  @default(false)
+  createdAt       DateTime                 @default(now())
+  updatedAt       DateTime                 @updatedAt
+  memberships     OrganizationMembership[]
+  createdTeams    Team[]                   @relation("TeamCreatedBy")
 }
 
 model Organization {
-  id          String                   @id @default(uuid())
-  name        String
-  description String?
-  isActive    Boolean                  @default(true)
-  createdAt   DateTime                 @default(now())
-  updatedAt   DateTime                 @updatedAt
-  memberships OrganizationMembership[]
-  teams       Team[]
+  id                     String                    @id @default(uuid())
+  name                   String
+  description            String?
+  isActive               Boolean                   @default(true)
+  createdAt              DateTime                  @default(now())
+  updatedAt              DateTime                  @updatedAt
+  organizationCategories OrganizationCategory[]
+  memberships            OrganizationMembership[]
+  serviceAreas           OrganizationServiceArea[]
+  teams                  Team[]
 
   @@index([isActive])
 }
@@ -79,6 +84,71 @@ model TeamMembership {
   @@index([membershipId])
 }
 
+model Category {
+  id          String  @id @default(uuid())
+  name        String
+  slug        String  @unique
+  description String?
+  isActive    Boolean @default(true)
+
+  parentId String?
+  parent   Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id], onDelete: Restrict)
+  children Category[] @relation("CategoryHierarchy")
+
+  organizationCategories OrganizationCategory[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([parentId, isActive])
+  @@index([isActive])
+}
+
+model OrganizationCategory {
+  organizationId String
+  categoryId     String
+  isActive       Boolean @default(true)
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  category     Category     @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([organizationId, categoryId])
+  @@index([categoryId, isActive])
+}
+
+// Geographic area an organization serves. `area` is a PostGIS geography that
+// Prisma cannot read or write, so every query touching it is raw SQL in
+// organization.service.ts. A CHECK constraint (added by hand in migration
+// 20261128150000_add_service_areas) rejects invalid shapes such as
+// self-intersecting polygons.
+model OrganizationServiceArea {
+  id             String                                       @id @default(uuid())
+  organizationId String
+  name           String
+  area           Unsupported("geography(MultiPolygon, 4326)")
+  isActive       Boolean                                      @default(true)
+  createdAt      DateTime                                     @default(now())
+  updatedAt      DateTime                                     @updatedAt
+  organization   Organization                                 @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+
+  @@index([area], type: Gist)
+  @@index([organizationId, isActive])
+}
+
+// Singleton row used by the Category hierarchy triggers to serialize
+// hierarchy-changing writes (see migration 20261127201815_enforce_category_hierarchy).
+// Declared only so Prisma Migrate treats the table as expected; it is not part
+// of the generated client and must not be written by application code.
+model CategoryHierarchyLock {
+  id      Boolean @id @default(true)
+  version BigInt  @default(0)
+
+  @@ignore
+}
+
 enum OrganizationRole {
   OWNER
   ADMIN
@@ -91,4 +161,18 @@ enum MembershipStatus {
   INVITED
   SUSPENDED
   REMOVED
+}
+
+// PostGIS reference table (coordinate systems), created by
+// `CREATE EXTENSION postgis` in migration 20261128120000_enable_postgis.
+// Owned by the extension: declared only so `prisma db pull` / Migrate treat it
+// as expected. Not part of the generated client.
+model spatial_ref_sys {
+  srid      Int     @id
+  auth_name String? @db.VarChar(256)
+  auth_srid Int?
+  srtext    String? @db.VarChar(2048)
+  proj4text String? @db.VarChar(2048)
+
+  @@ignore
 }

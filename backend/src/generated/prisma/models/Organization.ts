@@ -190,7 +190,9 @@ export type OrganizationWhereInput = {
   isActive?: Prisma.BoolFilter<"Organization"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
+  organizationCategories?: Prisma.OrganizationCategoryListRelationFilter
   memberships?: Prisma.OrganizationMembershipListRelationFilter
+  serviceAreas?: Prisma.OrganizationServiceAreaListRelationFilter
   teams?: Prisma.TeamListRelationFilter
 }
 
@@ -201,7 +203,9 @@ export type OrganizationOrderByWithRelationInput = {
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  organizationCategories?: Prisma.OrganizationCategoryOrderByRelationAggregateInput
   memberships?: Prisma.OrganizationMembershipOrderByRelationAggregateInput
+  serviceAreas?: Prisma.OrganizationServiceAreaOrderByRelationAggregateInput
   teams?: Prisma.TeamOrderByRelationAggregateInput
 }
 
@@ -215,7 +219,9 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   isActive?: Prisma.BoolFilter<"Organization"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Organization"> | Date | string
+  organizationCategories?: Prisma.OrganizationCategoryListRelationFilter
   memberships?: Prisma.OrganizationMembershipListRelationFilter
+  serviceAreas?: Prisma.OrganizationServiceAreaListRelationFilter
   teams?: Prisma.TeamListRelationFilter
 }, "id">
 
@@ -250,7 +256,9 @@ export type OrganizationCreateInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  organizationCategories?: Prisma.OrganizationCategoryCreateNestedManyWithoutOrganizationInput
   memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutOrganizationInput
+  serviceAreas?: Prisma.OrganizationServiceAreaCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
 }
 
@@ -261,7 +269,9 @@ export type OrganizationUncheckedCreateInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUncheckedCreateNestedManyWithoutOrganizationInput
   memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
@@ -272,7 +282,9 @@ export type OrganizationUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUpdateManyWithoutOrganizationNestedInput
   memberships?: Prisma.OrganizationMembershipUpdateManyWithoutOrganizationNestedInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
 }
 
@@ -283,7 +295,9 @@ export type OrganizationUncheckedUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
   memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
@@ -350,10 +364,6 @@ export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type OrganizationCreateNestedOneWithoutMembershipsInput = {
   create?: Prisma.XOR<Prisma.OrganizationCreateWithoutMembershipsInput, Prisma.OrganizationUncheckedCreateWithoutMembershipsInput>
   connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutMembershipsInput
@@ -382,6 +392,28 @@ export type OrganizationUpdateOneRequiredWithoutTeamsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutTeamsInput, Prisma.OrganizationUpdateWithoutTeamsInput>, Prisma.OrganizationUncheckedUpdateWithoutTeamsInput>
 }
 
+export type OrganizationCreateNestedOneWithoutOrganizationCategoriesInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutOrganizationCategoriesInput, Prisma.OrganizationUncheckedCreateWithoutOrganizationCategoriesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutOrganizationCategoriesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutOrganizationCategoriesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutOrganizationCategoriesInput, Prisma.OrganizationUncheckedCreateWithoutOrganizationCategoriesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutOrganizationCategoriesInput
+  upsert?: Prisma.OrganizationUpsertWithoutOrganizationCategoriesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutOrganizationCategoriesInput, Prisma.OrganizationUpdateWithoutOrganizationCategoriesInput>, Prisma.OrganizationUncheckedUpdateWithoutOrganizationCategoriesInput>
+}
+
+export type OrganizationUpdateOneRequiredWithoutServiceAreasNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutServiceAreasInput, Prisma.OrganizationUncheckedCreateWithoutServiceAreasInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutServiceAreasInput
+  upsert?: Prisma.OrganizationUpsertWithoutServiceAreasInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutServiceAreasInput, Prisma.OrganizationUpdateWithoutServiceAreasInput>, Prisma.OrganizationUncheckedUpdateWithoutServiceAreasInput>
+}
+
 export type OrganizationCreateWithoutMembershipsInput = {
   id?: string
   name: string
@@ -389,6 +421,8 @@ export type OrganizationCreateWithoutMembershipsInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  organizationCategories?: Prisma.OrganizationCategoryCreateNestedManyWithoutOrganizationInput
+  serviceAreas?: Prisma.OrganizationServiceAreaCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
 }
 
@@ -399,6 +433,8 @@ export type OrganizationUncheckedCreateWithoutMembershipsInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
@@ -425,6 +461,8 @@ export type OrganizationUpdateWithoutMembershipsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUpdateManyWithoutOrganizationNestedInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
 }
 
@@ -435,6 +473,8 @@ export type OrganizationUncheckedUpdateWithoutMembershipsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
@@ -445,7 +485,9 @@ export type OrganizationCreateWithoutTeamsInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  organizationCategories?: Prisma.OrganizationCategoryCreateNestedManyWithoutOrganizationInput
   memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutOrganizationInput
+  serviceAreas?: Prisma.OrganizationServiceAreaCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutTeamsInput = {
@@ -455,7 +497,9 @@ export type OrganizationUncheckedCreateWithoutTeamsInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUncheckedCreateNestedManyWithoutOrganizationInput
   memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutTeamsInput = {
@@ -481,7 +525,9 @@ export type OrganizationUpdateWithoutTeamsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUpdateManyWithoutOrganizationNestedInput
   memberships?: Prisma.OrganizationMembershipUpdateManyWithoutOrganizationNestedInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutTeamsInput = {
@@ -491,7 +537,137 @@ export type OrganizationUncheckedUpdateWithoutTeamsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
   memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutOrganizationCategoriesInput = {
+  id?: string
+  name: string
+  description?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutOrganizationInput
+  serviceAreas?: Prisma.OrganizationServiceAreaCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutOrganizationCategoriesInput = {
+  id?: string
+  name: string
+  description?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutOrganizationCategoriesInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutOrganizationCategoriesInput, Prisma.OrganizationUncheckedCreateWithoutOrganizationCategoriesInput>
+}
+
+export type OrganizationUpsertWithoutOrganizationCategoriesInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutOrganizationCategoriesInput, Prisma.OrganizationUncheckedUpdateWithoutOrganizationCategoriesInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutOrganizationCategoriesInput, Prisma.OrganizationUncheckedCreateWithoutOrganizationCategoriesInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutOrganizationCategoriesInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutOrganizationCategoriesInput, Prisma.OrganizationUncheckedUpdateWithoutOrganizationCategoriesInput>
+}
+
+export type OrganizationUpdateWithoutOrganizationCategoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.OrganizationMembershipUpdateManyWithoutOrganizationNestedInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutOrganizationCategoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutServiceAreasInput = {
+  id?: string
+  name: string
+  description?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organizationCategories?: Prisma.OrganizationCategoryCreateNestedManyWithoutOrganizationInput
+  memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutServiceAreasInput = {
+  id?: string
+  name: string
+  description?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutServiceAreasInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutServiceAreasInput, Prisma.OrganizationUncheckedCreateWithoutServiceAreasInput>
+}
+
+export type OrganizationUpsertWithoutServiceAreasInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutServiceAreasInput, Prisma.OrganizationUncheckedUpdateWithoutServiceAreasInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutServiceAreasInput, Prisma.OrganizationUncheckedCreateWithoutServiceAreasInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutServiceAreasInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutServiceAreasInput, Prisma.OrganizationUncheckedUpdateWithoutServiceAreasInput>
+}
+
+export type OrganizationUpdateWithoutServiceAreasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUpdateManyWithoutOrganizationNestedInput
+  memberships?: Prisma.OrganizationMembershipUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutServiceAreasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 
@@ -500,12 +676,16 @@ export type OrganizationUncheckedUpdateWithoutTeamsInput = {
  */
 
 export type OrganizationCountOutputType = {
+  organizationCategories: number
   memberships: number
+  serviceAreas: number
   teams: number
 }
 
 export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  organizationCategories?: boolean | OrganizationCountOutputTypeCountOrganizationCategoriesArgs
   memberships?: boolean | OrganizationCountOutputTypeCountMembershipsArgs
+  serviceAreas?: boolean | OrganizationCountOutputTypeCountServiceAreasArgs
   teams?: boolean | OrganizationCountOutputTypeCountTeamsArgs
 }
 
@@ -522,8 +702,22 @@ export type OrganizationCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types
 /**
  * OrganizationCountOutputType without action
  */
+export type OrganizationCountOutputTypeCountOrganizationCategoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OrganizationCategoryWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
 export type OrganizationCountOutputTypeCountMembershipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.OrganizationMembershipWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountServiceAreasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OrganizationServiceAreaWhereInput
 }
 
 /**
@@ -541,7 +735,9 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  organizationCategories?: boolean | Prisma.Organization$organizationCategoriesArgs<ExtArgs>
   memberships?: boolean | Prisma.Organization$membershipsArgs<ExtArgs>
+  serviceAreas?: boolean | Prisma.Organization$serviceAreasArgs<ExtArgs>
   teams?: boolean | Prisma.Organization$teamsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organization"]>
@@ -575,7 +771,9 @@ export type OrganizationSelectScalar = {
 
 export type OrganizationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["organization"]>
 export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  organizationCategories?: boolean | Prisma.Organization$organizationCategoriesArgs<ExtArgs>
   memberships?: boolean | Prisma.Organization$membershipsArgs<ExtArgs>
+  serviceAreas?: boolean | Prisma.Organization$serviceAreasArgs<ExtArgs>
   teams?: boolean | Prisma.Organization$teamsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -585,7 +783,9 @@ export type OrganizationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types
 export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Organization"
   objects: {
+    organizationCategories: Prisma.$OrganizationCategoryPayload<ExtArgs>[]
     memberships: Prisma.$OrganizationMembershipPayload<ExtArgs>[]
+    serviceAreas: Prisma.$OrganizationServiceAreaPayload<ExtArgs>[]
     teams: Prisma.$TeamPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -989,7 +1189,9 @@ readonly fields: OrganizationFieldRefs;
  */
 export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  organizationCategories<T extends Prisma.Organization$organizationCategoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$organizationCategoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrganizationCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   memberships<T extends Prisma.Organization$membershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$membershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrganizationMembershipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  serviceAreas<T extends Prisma.Organization$serviceAreasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$serviceAreasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrganizationServiceAreaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   teams<T extends Prisma.Organization$teamsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$teamsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1419,6 +1621,30 @@ export type OrganizationDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
 }
 
 /**
+ * Organization.organizationCategories
+ */
+export type Organization$organizationCategoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OrganizationCategory
+   */
+  select?: Prisma.OrganizationCategorySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OrganizationCategory
+   */
+  omit?: Prisma.OrganizationCategoryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrganizationCategoryInclude<ExtArgs> | null
+  where?: Prisma.OrganizationCategoryWhereInput
+  orderBy?: Prisma.OrganizationCategoryOrderByWithRelationInput | Prisma.OrganizationCategoryOrderByWithRelationInput[]
+  cursor?: Prisma.OrganizationCategoryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OrganizationCategoryScalarFieldEnum | Prisma.OrganizationCategoryScalarFieldEnum[]
+}
+
+/**
  * Organization.memberships
  */
 export type Organization$membershipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1440,6 +1666,30 @@ export type Organization$membershipsArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   distinct?: Prisma.OrganizationMembershipScalarFieldEnum | Prisma.OrganizationMembershipScalarFieldEnum[]
+}
+
+/**
+ * Organization.serviceAreas
+ */
+export type Organization$serviceAreasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OrganizationServiceArea
+   */
+  select?: Prisma.OrganizationServiceAreaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OrganizationServiceArea
+   */
+  omit?: Prisma.OrganizationServiceAreaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrganizationServiceAreaInclude<ExtArgs> | null
+  where?: Prisma.OrganizationServiceAreaWhereInput
+  orderBy?: Prisma.OrganizationServiceAreaOrderByWithRelationInput | Prisma.OrganizationServiceAreaOrderByWithRelationInput[]
+  cursor?: Prisma.OrganizationServiceAreaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OrganizationServiceAreaScalarFieldEnum | Prisma.OrganizationServiceAreaScalarFieldEnum[]
 }
 
 /**

@@ -401,7 +401,10 @@ export const ModelName = {
   Organization: 'Organization',
   OrganizationMembership: 'OrganizationMembership',
   Team: 'Team',
-  TeamMembership: 'TeamMembership'
+  TeamMembership: 'TeamMembership',
+  Category: 'Category',
+  OrganizationCategory: 'OrganizationCategory',
+  OrganizationServiceArea: 'OrganizationServiceArea'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -417,7 +420,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "organization" | "organizationMembership" | "team" | "teamMembership"
+    modelProps: "user" | "organization" | "organizationMembership" | "team" | "teamMembership" | "category" | "organizationCategory" | "organizationServiceArea"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -791,6 +794,212 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Category: {
+      payload: Prisma.$CategoryPayload<ExtArgs>
+      fields: Prisma.CategoryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CategoryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CategoryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoryPayload>
+        }
+        findFirst: {
+          args: Prisma.CategoryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CategoryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoryPayload>
+        }
+        findMany: {
+          args: Prisma.CategoryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoryPayload>[]
+        }
+        create: {
+          args: Prisma.CategoryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoryPayload>
+        }
+        createMany: {
+          args: Prisma.CategoryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CategoryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoryPayload>[]
+        }
+        delete: {
+          args: Prisma.CategoryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoryPayload>
+        }
+        update: {
+          args: Prisma.CategoryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoryPayload>
+        }
+        deleteMany: {
+          args: Prisma.CategoryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CategoryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CategoryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoryPayload>[]
+        }
+        upsert: {
+          args: Prisma.CategoryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CategoryPayload>
+        }
+        aggregate: {
+          args: Prisma.CategoryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCategory>
+        }
+        groupBy: {
+          args: Prisma.CategoryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CategoryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CategoryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CategoryCountAggregateOutputType> | number
+        }
+      }
+    }
+    OrganizationCategory: {
+      payload: Prisma.$OrganizationCategoryPayload<ExtArgs>
+      fields: Prisma.OrganizationCategoryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.OrganizationCategoryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrganizationCategoryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.OrganizationCategoryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrganizationCategoryPayload>
+        }
+        findFirst: {
+          args: Prisma.OrganizationCategoryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrganizationCategoryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.OrganizationCategoryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrganizationCategoryPayload>
+        }
+        findMany: {
+          args: Prisma.OrganizationCategoryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrganizationCategoryPayload>[]
+        }
+        create: {
+          args: Prisma.OrganizationCategoryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrganizationCategoryPayload>
+        }
+        createMany: {
+          args: Prisma.OrganizationCategoryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.OrganizationCategoryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrganizationCategoryPayload>[]
+        }
+        delete: {
+          args: Prisma.OrganizationCategoryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrganizationCategoryPayload>
+        }
+        update: {
+          args: Prisma.OrganizationCategoryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrganizationCategoryPayload>
+        }
+        deleteMany: {
+          args: Prisma.OrganizationCategoryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.OrganizationCategoryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.OrganizationCategoryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrganizationCategoryPayload>[]
+        }
+        upsert: {
+          args: Prisma.OrganizationCategoryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrganizationCategoryPayload>
+        }
+        aggregate: {
+          args: Prisma.OrganizationCategoryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateOrganizationCategory>
+        }
+        groupBy: {
+          args: Prisma.OrganizationCategoryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OrganizationCategoryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.OrganizationCategoryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OrganizationCategoryCountAggregateOutputType> | number
+        }
+      }
+    }
+    OrganizationServiceArea: {
+      payload: Prisma.$OrganizationServiceAreaPayload<ExtArgs>
+      fields: Prisma.OrganizationServiceAreaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.OrganizationServiceAreaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrganizationServiceAreaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.OrganizationServiceAreaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrganizationServiceAreaPayload>
+        }
+        findFirst: {
+          args: Prisma.OrganizationServiceAreaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrganizationServiceAreaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.OrganizationServiceAreaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrganizationServiceAreaPayload>
+        }
+        findMany: {
+          args: Prisma.OrganizationServiceAreaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrganizationServiceAreaPayload>[]
+        }
+        delete: {
+          args: Prisma.OrganizationServiceAreaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrganizationServiceAreaPayload>
+        }
+        update: {
+          args: Prisma.OrganizationServiceAreaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrganizationServiceAreaPayload>
+        }
+        deleteMany: {
+          args: Prisma.OrganizationServiceAreaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.OrganizationServiceAreaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.OrganizationServiceAreaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrganizationServiceAreaPayload>[]
+        }
+        aggregate: {
+          args: Prisma.OrganizationServiceAreaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateOrganizationServiceArea>
+        }
+        groupBy: {
+          args: Prisma.OrganizationServiceAreaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OrganizationServiceAreaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.OrganizationServiceAreaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OrganizationServiceAreaCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -835,6 +1044,7 @@ export const UserScalarFieldEnum = {
   name: 'name',
   email: 'email',
   passwordHash: 'passwordHash',
+  isPlatformAdmin: 'isPlatformAdmin',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -892,6 +1102,43 @@ export const TeamMembershipScalarFieldEnum = {
 export type TeamMembershipScalarFieldEnum = (typeof TeamMembershipScalarFieldEnum)[keyof typeof TeamMembershipScalarFieldEnum]
 
 
+export const CategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  isActive: 'isActive',
+  parentId: 'parentId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
+
+
+export const OrganizationCategoryScalarFieldEnum = {
+  organizationId: 'organizationId',
+  categoryId: 'categoryId',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OrganizationCategoryScalarFieldEnum = (typeof OrganizationCategoryScalarFieldEnum)[keyof typeof OrganizationCategoryScalarFieldEnum]
+
+
+export const OrganizationServiceAreaScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  name: 'name',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OrganizationServiceAreaScalarFieldEnum = (typeof OrganizationServiceAreaScalarFieldEnum)[keyof typeof OrganizationServiceAreaScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -937,6 +1184,13 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -947,13 +1201,6 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -1154,6 +1401,9 @@ export type GlobalOmitConfig = {
   organizationMembership?: Prisma.OrganizationMembershipOmit
   team?: Prisma.TeamOmit
   teamMembership?: Prisma.TeamMembershipOmit
+  category?: Prisma.CategoryOmit
+  organizationCategory?: Prisma.OrganizationCategoryOmit
+  organizationServiceArea?: Prisma.OrganizationServiceAreaOmit
 }
 
 /* Types for Logging */

@@ -66,3 +66,18 @@ export type Team = Prisma.TeamModel
  * 
  */
 export type TeamMembership = Prisma.TeamMembershipModel
+/**
+ * Model Category
+ * 
+ */
+export type Category = Prisma.CategoryModel
+/**
+ * Model OrganizationCategory
+ * 
+ */
+export type OrganizationCategory = Prisma.OrganizationCategoryModel
+/**
+ * Model OrganizationServiceArea
+ * 
+ */
+export type OrganizationServiceArea = Prisma.OrganizationServiceAreaModel

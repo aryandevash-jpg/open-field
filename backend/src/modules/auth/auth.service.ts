@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { Prisma } from "../../generated/prisma/client.js";
 import { prisma } from "../../lib/prisma.js";
 import { env } from "../../config/env.js";
 
@@ -49,21 +50,26 @@ export const registerUser = async (data: RegisterInput) => {
   const passwordHash = await bcrypt.hash(data.password, 12);
   // Create user in PostgreSQL
 
-  const user = await prisma.user.create({
-    data: {
-      name: data.name,
-      email: data.email,
-      passwordHash,
-    },
-    select: {
-      id: true,
-      name: true,
-      email: true,
-      createdAt: true,
-    },
-  });
-
-
-  return user;
+  try {
+    return await prisma.user.create({
+      data: {
+        name: data.name,
+        email: data.email,
+        passwordHash,
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        createdAt: true,
+      },
+    });
+  } catch (error) {
+    // The unique index on email is the source of truth for "already registered".
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
+      throw new Error("EMAIL_ALREADY_REGISTERED", { cause: error });
+    }
+    throw error;
+  }
 };
 

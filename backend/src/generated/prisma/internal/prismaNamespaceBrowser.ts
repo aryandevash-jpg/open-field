@@ -55,7 +55,10 @@ export const ModelName = {
   Organization: 'Organization',
   OrganizationMembership: 'OrganizationMembership',
   Team: 'Team',
-  TeamMembership: 'TeamMembership'
+  TeamMembership: 'TeamMembership',
+  Category: 'Category',
+  OrganizationCategory: 'OrganizationCategory',
+  OrganizationServiceArea: 'OrganizationServiceArea'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -79,6 +82,7 @@ export const UserScalarFieldEnum = {
   name: 'name',
   email: 'email',
   passwordHash: 'passwordHash',
+  isPlatformAdmin: 'isPlatformAdmin',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -134,6 +138,43 @@ export const TeamMembershipScalarFieldEnum = {
 } as const
 
 export type TeamMembershipScalarFieldEnum = (typeof TeamMembershipScalarFieldEnum)[keyof typeof TeamMembershipScalarFieldEnum]
+
+
+export const CategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  isActive: 'isActive',
+  parentId: 'parentId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
+
+
+export const OrganizationCategoryScalarFieldEnum = {
+  organizationId: 'organizationId',
+  categoryId: 'categoryId',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OrganizationCategoryScalarFieldEnum = (typeof OrganizationCategoryScalarFieldEnum)[keyof typeof OrganizationCategoryScalarFieldEnum]
+
+
+export const OrganizationServiceAreaScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  name: 'name',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OrganizationServiceAreaScalarFieldEnum = (typeof OrganizationServiceAreaScalarFieldEnum)[keyof typeof OrganizationServiceAreaScalarFieldEnum]
 
 
 export const SortOrder = {

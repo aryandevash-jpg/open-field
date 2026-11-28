@@ -1,0 +1,11 @@
+-- Enable PostGIS for service areas, report locations and event boundaries
+-- (design doc §10.2: geography(…, 4326), GiST indexes, ST_DWithin).
+--
+-- PostGIS is installed in "public" and creates the reference table
+-- "spatial_ref_sys" there. schema.prisma declares that table with @@ignore so
+-- Prisma Migrate treats it as expected instead of proposing to drop it.
+--
+-- Rollback (only while no table uses PostGIS types):
+--   DROP EXTENSION postgis;
+-- and remove the spatial_ref_sys model from schema.prisma.
+CREATE EXTENSION IF NOT EXISTS postgis;
