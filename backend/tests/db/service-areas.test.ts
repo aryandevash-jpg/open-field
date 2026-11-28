@@ -95,6 +95,7 @@ after(async () => {
   await prisma.organizationCategory.deleteMany({ where: organizations });
   await prisma.organizationMembership.deleteMany({ where: organizations });
   await prisma.organization.deleteMany({ where: { name: { startsWith: RUN } } });
+  await prisma.category.updateMany({ where: { slug: { startsWith: RUN } }, data: { parentId: null } });
   await prisma.category.deleteMany({ where: { slug: { startsWith: RUN } } });
   await prisma.user.deleteMany({ where: { email: { startsWith: RUN } } });
   await prisma.$disconnect();
@@ -198,6 +199,29 @@ describe("findOrganizationsServing", () => {
     assert.deepEqual(await findOrganizationsServing(SHIVAJINAGAR, match.categoryId), [match.organizationId]);
     assert.deepEqual(await findOrganizationsServing(MUMBAI, match.categoryId), []);
     assert.deepEqual(await findOrganizationsServing(SHIVAJINAGAR, otherCategory.id), []);
+  });
+
+  test("a capability on a parent category covers reports in its subcategories", async () => {
+    const match = await setup("parent");
+    const child = await prisma.category.create({
+      data: { name: `${RUN}-child`, slug: `${RUN}-${++categoryCounter}`, parentId: match.categoryId },
+    });
+    const grandchild = await prisma.category.create({
+      data: { name: `${RUN}-grandchild`, slug: `${RUN}-${++categoryCounter}`, parentId: child.id },
+    });
+
+    assert.deepEqual(await findOrganizationsServing(SHIVAJINAGAR, child.id), [match.organizationId]);
+    assert.deepEqual(await findOrganizationsServing(SHIVAJINAGAR, grandchild.id), [match.organizationId]);
+
+    // The reverse does not hold: a capability on the child does not cover the parent.
+    const childOnly = await createOrganization(owner.id, { name: `${RUN}-match-child-only` });
+    await prisma.organizationCategory.create({ data: { organizationId: childOnly.id, categoryId: child.id } });
+    await addArea({ type: "Polygon", coordinates: [PUNE_SQUARE] }, "Central Pune", childOnly.id);
+    assert.deepEqual(
+      (await findOrganizationsServing(SHIVAJINAGAR, child.id)).sort(),
+      [match.organizationId, childOnly.id].sort()
+    );
+    assert.deepEqual(await findOrganizationsServing(SHIVAJINAGAR, match.categoryId), [match.organizationId]);
   });
 
   test("a point on the boundary counts as covered", async () => {

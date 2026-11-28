@@ -8,17 +8,26 @@ datasource db {
 }
 
 model User {
-  id              String                   @id @default(uuid())
-  name            String
-  email           String                   @unique
-  passwordHash    String
+  id                      String                    @id @default(uuid())
+  name                    String
+  email                   String                    @unique
+  passwordHash            String
   // Platform-wide administrator (manages the shared category taxonomy).
   // Granted only via scripts/grant-platform-admin.ts, never through the API.
-  isPlatformAdmin Boolean                  @default(false)
-  createdAt       DateTime                 @default(now())
-  updatedAt       DateTime                 @updatedAt
-  memberships     OrganizationMembership[]
-  createdTeams    Team[]                   @relation("TeamCreatedBy")
+  isPlatformAdmin         Boolean                   @default(false)
+  createdAt               DateTime                  @default(now())
+  updatedAt               DateTime                  @updatedAt
+  memberships             OrganizationMembership[]
+  createdTeams            Team[]                    @relation("TeamCreatedBy")
+  createdEvents           Event[]                   @relation("EventCreatedBy")
+  reviewedParticipations  EventParticipation[]      @relation("ParticipationReviewedBy")
+  submittedReports        Report[]                  @relation("ReportSubmittedBy")
+  reportHistory           ReportHistory[]           @relation("ReportHistoryActor")
+  claimedAssignments      Assignment[]              @relation("AssignmentClaimedBy")
+  invitedCollaborations   AssignmentCollaboration[] @relation("CollaborationInvitedBy")
+  respondedCollaborations AssignmentCollaboration[] @relation("CollaborationRespondedBy")
+  comments                ReportComment[]           @relation("CommentAuthor")
+  notifications           Notification[]
 }
 
 model Organization {
@@ -32,6 +41,11 @@ model Organization {
   memberships            OrganizationMembership[]
   serviceAreas           OrganizationServiceArea[]
   teams                  Team[]
+  hostedEvents           Event[]                   @relation("EventHost")
+  eventParticipations    EventParticipation[]
+  reportOpportunities    ReportOpportunity[]
+  assignments            Assignment[]
+  collaborations         AssignmentCollaboration[]
 
   @@index([isActive])
 }
@@ -54,16 +68,18 @@ model OrganizationMembership {
 }
 
 model Team {
-  id              String           @id @default(uuid())
-  organizationId  String
-  name            String
-  isActive        Boolean          @default(true)
-  createdByUserId String
-  createdAt       DateTime         @default(now())
-  updatedAt       DateTime         @updatedAt
-  organization    Organization     @relation(fields: [organizationId], references: [id], onDelete: Restrict)
-  createdBy       User             @relation("TeamCreatedBy", fields: [createdByUserId], references: [id], onDelete: Restrict)
-  memberships     TeamMembership[]
+  id                       String                        @id @default(uuid())
+  organizationId           String
+  name                     String
+  isActive                 Boolean                       @default(true)
+  createdByUserId          String
+  createdAt                DateTime                      @default(now())
+  updatedAt                DateTime                      @updatedAt
+  organization             Organization                  @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  createdBy                User                          @relation("TeamCreatedBy", fields: [createdByUserId], references: [id], onDelete: Restrict)
+  memberships              TeamMembership[]
+  assignments              Assignment[]
+  collaborationNominations AssignmentCollaborationTeam[]
 
   @@unique([organizationId, name])
   @@unique([id, organizationId])
@@ -96,6 +112,7 @@ model Category {
   children Category[] @relation("CategoryHierarchy")
 
   organizationCategories OrganizationCategory[]
+  reports                Report[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -138,6 +155,248 @@ model OrganizationServiceArea {
   @@index([organizationId, isActive])
 }
 
+// ------------------------------------
+// Events: a host organization's initiative that groups reports and
+// participating organizations (design doc §5.1, §6.8).
+// ------------------------------------
+model Event {
+  id                 String      @id @default(uuid())
+  hostOrganizationId String
+  title              String
+  description        String?
+  startsAt           DateTime    @db.Timestamptz(3)
+  endsAt             DateTime?   @db.Timestamptz(3)
+  status             EventStatus @default(ACTIVE)
+  createdByUserId    String
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+
+  hostOrganization Organization         @relation("EventHost", fields: [hostOrganizationId], references: [id], onDelete: Restrict)
+  createdBy        User                 @relation("EventCreatedBy", fields: [createdByUserId], references: [id], onDelete: Restrict)
+  participations   EventParticipation[]
+  reports          Report[]
+
+  @@index([hostOrganizationId, status])
+  @@index([status, startsAt])
+}
+
+// An organization's request to take part in an event. The host is never a
+// row here: hosting is stored on Event, participation separately (§7.3).
+model EventParticipation {
+  eventId          String
+  organizationId   String
+  status           ParticipationStatus @default(PENDING)
+  reviewedByUserId String?
+  reviewedAt       DateTime?
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
+
+  event        Event        @relation(fields: [eventId], references: [id], onDelete: Restrict)
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  reviewedBy   User?        @relation("ParticipationReviewedBy", fields: [reviewedByUserId], references: [id], onDelete: Restrict)
+
+  @@id([eventId, organizationId])
+  @@index([organizationId, status])
+}
+
+// ------------------------------------
+// Reports: an issue observed in the world (§5.1, §6.1, §7.1).
+// `location` is a PostGIS point; reads/writes of it are raw SQL in
+// report.service.ts. Status changes only through verification commands.
+// ------------------------------------
+model Report {
+  id                  String                                @id @default(uuid())
+  title               String
+  description         String
+  categoryId          String
+  location            Unsupported("geography(Point, 4326)")
+  eventId             String?
+  submittedByUserId   String
+  status              ReportStatus                          @default(SUBMITTED)
+  // Incremented on every change; basis for optimistic concurrency later.
+  version             Int                                   @default(1)
+  // Set only when status = DUPLICATE (enforced by a CHECK in the migration).
+  duplicateOfReportId String?
+  createdAt           DateTime                              @default(now())
+  updatedAt           DateTime                              @updatedAt
+
+  category      Category            @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  event         Event?              @relation(fields: [eventId], references: [id], onDelete: Restrict)
+  submittedBy   User                @relation("ReportSubmittedBy", fields: [submittedByUserId], references: [id], onDelete: Restrict)
+  duplicateOf   Report?             @relation("ReportDuplicates", fields: [duplicateOfReportId], references: [id], onDelete: Restrict)
+  duplicates    Report[]            @relation("ReportDuplicates")
+  media         ReportMedia[]
+  history       ReportHistory[]
+  opportunities ReportOpportunity[]
+  assignments   Assignment[]
+  comments      ReportComment[]
+
+  @@index([location], type: Gist)
+  @@index([status, createdAt])
+  @@index([eventId, createdAt])
+  @@index([submittedByUserId, createdAt])
+  @@index([categoryId])
+}
+
+// Photo/attachment metadata. MVP stores a URL supplied by the client; the
+// design's upload-intent + object storage flow (§11.2 Media) comes later.
+model ReportMedia {
+  id          String   @id @default(uuid())
+  reportId    String
+  url         String
+  contentType String?
+  createdAt   DateTime @default(now())
+
+  report Report @relation(fields: [reportId], references: [id], onDelete: Restrict)
+
+  @@index([reportId])
+}
+
+// Append-only log of who did what to a report, written in the same
+// transaction as the change (§6.1, §10.5).
+model ReportHistory {
+  id          String        @id @default(uuid())
+  reportId    String
+  actorUserId String
+  action      String
+  fromStatus  ReportStatus?
+  toStatus    ReportStatus?
+  reason      String?
+  createdAt   DateTime      @default(now())
+
+  report Report @relation(fields: [reportId], references: [id], onDelete: Restrict)
+  actor  User   @relation("ReportHistoryActor", fields: [actorUserId], references: [id], onDelete: Restrict)
+
+  @@index([reportId, createdAt])
+}
+
+// ------------------------------------
+// Distribution and assignments (design doc §6.3-6.5, §7.2, §10.4)
+// ------------------------------------
+
+// An independent verified report offered to a matching organization. Written
+// when the report is verified. Not permanent authorization on its own: the
+// claim re-checks report status.
+model ReportOpportunity {
+  reportId       String
+  organizationId String
+  createdAt      DateTime @default(now())
+
+  report       Report       @relation(fields: [reportId], references: [id], onDelete: Restrict)
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+
+  @@id([reportId, organizationId])
+  @@index([organizationId, createdAt])
+}
+
+// One period of responsibility of a lead team for a report. A report has many
+// over time but at most one active (endedAt IS NULL): enforced by the partial
+// unique index "Assignment_one_active_per_report" in the migration.
+model Assignment {
+  id                     String           @id @default(uuid())
+  reportId               String
+  organizationId         String
+  teamId                 String
+  claimedByUserId        String
+  status                 AssignmentStatus @default(CLAIMED)
+  startDeadlineAt        DateTime         @db.Timestamptz(3)
+  startedAt              DateTime?        @db.Timestamptz(3)
+  completedAt            DateTime?        @db.Timestamptz(3)
+  endedAt                DateTime?        @db.Timestamptz(3)
+  completionNote         String?
+  // Set on the new assignment created by an explicit transfer (§6.6).
+  supersedesAssignmentId String?          @unique
+  createdAt              DateTime         @default(now())
+  updatedAt              DateTime         @updatedAt
+
+  supersedes     Assignment?               @relation("AssignmentTransfer", fields: [supersedesAssignmentId], references: [id], onDelete: Restrict)
+  supersededBy   Assignment?               @relation("AssignmentTransfer")
+  collaborations AssignmentCollaboration[]
+  report         Report                    @relation(fields: [reportId], references: [id], onDelete: Restrict)
+  organization   Organization              @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  // Composite FK: the team must belong to the assignment's organization.
+  team           Team                      @relation(fields: [teamId, organizationId], references: [id, organizationId], onDelete: Restrict)
+  claimedBy      User                      @relation("AssignmentClaimedBy", fields: [claimedByUserId], references: [id], onDelete: Restrict)
+
+  @@index([reportId, createdAt])
+  @@index([organizationId, status])
+  @@index([teamId, status])
+}
+
+// ------------------------------------
+// Collaboration, comments, notifications (design doc §6.7, phase 4)
+// ------------------------------------
+
+// The lead organization invites another organization to help on one
+// assignment. Access is tied to the assignment and revoked on transfer.
+model AssignmentCollaboration {
+  id                String              @id @default(uuid())
+  assignmentId      String
+  organizationId    String
+  status            CollaborationStatus @default(INVITED)
+  invitedByUserId   String
+  respondedByUserId String?
+  respondedAt       DateTime?
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+
+  assignment   Assignment                    @relation(fields: [assignmentId], references: [id], onDelete: Restrict)
+  organization Organization                  @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  invitedBy    User                          @relation("CollaborationInvitedBy", fields: [invitedByUserId], references: [id], onDelete: Restrict)
+  respondedBy  User?                         @relation("CollaborationRespondedBy", fields: [respondedByUserId], references: [id], onDelete: Restrict)
+  teams        AssignmentCollaborationTeam[]
+
+  @@unique([assignmentId, organizationId])
+  @@unique([id, organizationId])
+  @@index([organizationId, status])
+}
+
+// Teams nominated by an accepted collaborating organization. Composite FKs
+// ensure both the collaboration and the team belong to that organization.
+model AssignmentCollaborationTeam {
+  collaborationId String
+  teamId          String
+  organizationId  String
+  createdAt       DateTime @default(now())
+
+  collaboration AssignmentCollaboration @relation(fields: [collaborationId, organizationId], references: [id, organizationId], onDelete: Restrict)
+  team          Team                    @relation(fields: [teamId, organizationId], references: [id, organizationId], onDelete: Restrict)
+
+  @@id([collaborationId, teamId])
+  @@index([teamId])
+}
+
+// Append-only comments on a report.
+model ReportComment {
+  id           String   @id @default(uuid())
+  reportId     String
+  authorUserId String
+  body         String
+  createdAt    DateTime @default(now())
+
+  report Report @relation(fields: [reportId], references: [id], onDelete: Restrict)
+  author User   @relation("CommentAuthor", fields: [authorUserId], references: [id], onDelete: Restrict)
+
+  @@index([reportId, createdAt])
+}
+
+// In-app notifications, written in the same transaction as the change they
+// describe. Clients poll GET /notifications (no realtime in the MVP).
+model Notification {
+  id        String    @id @default(uuid())
+  userId    String
+  type      String
+  title     String
+  reportId  String?
+  eventId   String?
+  readAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([userId, readAt, createdAt])
+}
+
 // Singleton row used by the Category hierarchy triggers to serialize
 // hierarchy-changing writes (see migration 20261127201815_enforce_category_hierarchy).
 // Declared only so Prisma Migrate treats the table as expected; it is not part
@@ -147,6 +406,44 @@ model CategoryHierarchyLock {
   version BigInt  @default(0)
 
   @@ignore
+}
+
+enum EventStatus {
+  ACTIVE
+  COMPLETED
+}
+
+enum ParticipationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum ReportStatus {
+  SUBMITTED
+  UNDER_REVIEW
+  VERIFIED
+  RESOLUTION_PENDING
+  RESOLVED
+  REOPENED
+  REJECTED
+  DUPLICATE
+}
+
+enum AssignmentStatus {
+  CLAIMED
+  IN_PROGRESS
+  COMPLETED
+  EXPIRED
+  CANCELLED
+  TRANSFERRED
+}
+
+enum CollaborationStatus {
+  INVITED
+  ACCEPTED
+  DECLINED
+  REVOKED
 }
 
 enum OrganizationRole {

@@ -58,7 +58,18 @@ export const ModelName = {
   TeamMembership: 'TeamMembership',
   Category: 'Category',
   OrganizationCategory: 'OrganizationCategory',
-  OrganizationServiceArea: 'OrganizationServiceArea'
+  OrganizationServiceArea: 'OrganizationServiceArea',
+  Event: 'Event',
+  EventParticipation: 'EventParticipation',
+  Report: 'Report',
+  ReportMedia: 'ReportMedia',
+  ReportHistory: 'ReportHistory',
+  ReportOpportunity: 'ReportOpportunity',
+  Assignment: 'Assignment',
+  AssignmentCollaboration: 'AssignmentCollaboration',
+  AssignmentCollaborationTeam: 'AssignmentCollaborationTeam',
+  ReportComment: 'ReportComment',
+  Notification: 'Notification'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -175,6 +186,156 @@ export const OrganizationServiceAreaScalarFieldEnum = {
 } as const
 
 export type OrganizationServiceAreaScalarFieldEnum = (typeof OrganizationServiceAreaScalarFieldEnum)[keyof typeof OrganizationServiceAreaScalarFieldEnum]
+
+
+export const EventScalarFieldEnum = {
+  id: 'id',
+  hostOrganizationId: 'hostOrganizationId',
+  title: 'title',
+  description: 'description',
+  startsAt: 'startsAt',
+  endsAt: 'endsAt',
+  status: 'status',
+  createdByUserId: 'createdByUserId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
+
+
+export const EventParticipationScalarFieldEnum = {
+  eventId: 'eventId',
+  organizationId: 'organizationId',
+  status: 'status',
+  reviewedByUserId: 'reviewedByUserId',
+  reviewedAt: 'reviewedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EventParticipationScalarFieldEnum = (typeof EventParticipationScalarFieldEnum)[keyof typeof EventParticipationScalarFieldEnum]
+
+
+export const ReportScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  categoryId: 'categoryId',
+  eventId: 'eventId',
+  submittedByUserId: 'submittedByUserId',
+  status: 'status',
+  version: 'version',
+  duplicateOfReportId: 'duplicateOfReportId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReportScalarFieldEnum = (typeof ReportScalarFieldEnum)[keyof typeof ReportScalarFieldEnum]
+
+
+export const ReportMediaScalarFieldEnum = {
+  id: 'id',
+  reportId: 'reportId',
+  url: 'url',
+  contentType: 'contentType',
+  createdAt: 'createdAt'
+} as const
+
+export type ReportMediaScalarFieldEnum = (typeof ReportMediaScalarFieldEnum)[keyof typeof ReportMediaScalarFieldEnum]
+
+
+export const ReportHistoryScalarFieldEnum = {
+  id: 'id',
+  reportId: 'reportId',
+  actorUserId: 'actorUserId',
+  action: 'action',
+  fromStatus: 'fromStatus',
+  toStatus: 'toStatus',
+  reason: 'reason',
+  createdAt: 'createdAt'
+} as const
+
+export type ReportHistoryScalarFieldEnum = (typeof ReportHistoryScalarFieldEnum)[keyof typeof ReportHistoryScalarFieldEnum]
+
+
+export const ReportOpportunityScalarFieldEnum = {
+  reportId: 'reportId',
+  organizationId: 'organizationId',
+  createdAt: 'createdAt'
+} as const
+
+export type ReportOpportunityScalarFieldEnum = (typeof ReportOpportunityScalarFieldEnum)[keyof typeof ReportOpportunityScalarFieldEnum]
+
+
+export const AssignmentScalarFieldEnum = {
+  id: 'id',
+  reportId: 'reportId',
+  organizationId: 'organizationId',
+  teamId: 'teamId',
+  claimedByUserId: 'claimedByUserId',
+  status: 'status',
+  startDeadlineAt: 'startDeadlineAt',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt',
+  endedAt: 'endedAt',
+  completionNote: 'completionNote',
+  supersedesAssignmentId: 'supersedesAssignmentId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AssignmentScalarFieldEnum = (typeof AssignmentScalarFieldEnum)[keyof typeof AssignmentScalarFieldEnum]
+
+
+export const AssignmentCollaborationScalarFieldEnum = {
+  id: 'id',
+  assignmentId: 'assignmentId',
+  organizationId: 'organizationId',
+  status: 'status',
+  invitedByUserId: 'invitedByUserId',
+  respondedByUserId: 'respondedByUserId',
+  respondedAt: 'respondedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AssignmentCollaborationScalarFieldEnum = (typeof AssignmentCollaborationScalarFieldEnum)[keyof typeof AssignmentCollaborationScalarFieldEnum]
+
+
+export const AssignmentCollaborationTeamScalarFieldEnum = {
+  collaborationId: 'collaborationId',
+  teamId: 'teamId',
+  organizationId: 'organizationId',
+  createdAt: 'createdAt'
+} as const
+
+export type AssignmentCollaborationTeamScalarFieldEnum = (typeof AssignmentCollaborationTeamScalarFieldEnum)[keyof typeof AssignmentCollaborationTeamScalarFieldEnum]
+
+
+export const ReportCommentScalarFieldEnum = {
+  id: 'id',
+  reportId: 'reportId',
+  authorUserId: 'authorUserId',
+  body: 'body',
+  createdAt: 'createdAt'
+} as const
+
+export type ReportCommentScalarFieldEnum = (typeof ReportCommentScalarFieldEnum)[keyof typeof ReportCommentScalarFieldEnum]
+
+
+export const NotificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  type: 'type',
+  title: 'title',
+  reportId: 'reportId',
+  eventId: 'eventId',
+  readAt: 'readAt',
+  createdAt: 'createdAt'
+} as const
+
+export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
 
 
 export const SortOrder = {

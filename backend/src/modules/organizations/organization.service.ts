@@ -10,6 +10,8 @@ import { checkViolationMessage } from "../../lib/prisma-errors.js";
 import type { ServiceAreaGeometry } from "./organization.schema.js";
 
 const managers: OrganizationRole[] = [OrganizationRole.OWNER, OrganizationRole.ADMIN];
+// Coordinators run day-to-day work: claiming reports and cancelling assignments.
+export const coordinators: OrganizationRole[] = [...managers, OrganizationRole.COORDINATOR];
 
 export const getActiveMembership = (userId: string, organizationId: string) =>
   prisma.organizationMembership.findFirst({
@@ -31,6 +33,12 @@ export const requireOrganizationManager = async (userId: string, organizationId:
   return membership;
 };
 
+export const requireOrganizationCoordinator = async (userId: string, organizationId: string) => {
+  const membership = await getActiveMembership(userId, organizationId);
+  if (!membership || !coordinators.includes(membership.role)) throw new Error("FORBIDDEN");
+  return membership;
+};
+
 export const createOrganization = (userId: string, data: { name: string; description?: string }) =>
   prisma.$transaction(async (tx) => {
     const organization = await tx.organization.create({ data });
@@ -46,10 +54,63 @@ export const createOrganization = (userId: string, data: { name: string; descrip
 
 export const addMember = async (
   organizationId: string,
-  data: { userId: string; role: "ADMIN" | "COORDINATOR" | "MEMBER" },
-) =>
-  prisma.organizationMembership.create({
-    data: { organizationId, userId: data.userId, role: data.role },
+  data: { userId?: string; email?: string; role: "ADMIN" | "COORDINATOR" | "MEMBER" },
+) => {
+  const user = await prisma.user.findUnique({
+    where: data.userId ? { id: data.userId } : { email: data.email! },
+    select: { id: true },
+  });
+  if (!user) throw new Error("USER_NOT_FOUND");
+  return prisma.organizationMembership
+    .create({
+      data: { organizationId, userId: user.id, role: data.role },
+      include: { user: { select: { id: true, name: true, email: true } } },
+    })
+    .catch((error: unknown) => {
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
+        throw new Error("MEMBER_ALREADY_EXISTS", { cause: error });
+      }
+      throw error;
+    });
+};
+
+// The organizations the user actively belongs to, with their role.
+export const listMyOrganizations = (userId: string) =>
+  prisma.organizationMembership.findMany({
+    where: { userId, status: MembershipStatus.ACTIVE, organization: { isActive: true } },
+    include: { organization: { select: { id: true, name: true, description: true } } },
+    orderBy: { organization: { name: "asc" } },
+  });
+
+// Profile, members and active teams with their members. Members only.
+export const getOrganizationDetail = (organizationId: string) =>
+  prisma.organization.findUniqueOrThrow({
+    where: { id: organizationId },
+    include: {
+      memberships: {
+        where: { status: MembershipStatus.ACTIVE },
+        include: { user: { select: { id: true, name: true, email: true } } },
+        orderBy: { createdAt: "asc" },
+      },
+      teams: {
+        where: { isActive: true },
+        include: {
+          memberships: {
+            include: { organizationMembership: { include: { user: { select: { id: true, name: true } } } } },
+          },
+        },
+        orderBy: { name: "asc" },
+      },
+    },
+  });
+
+// For pickers (collaboration invites): active organizations other than this one.
+export const listOtherOrganizations = (organizationId: string) =>
+  prisma.organization.findMany({
+    where: { isActive: true, id: { not: organizationId } },
+    select: { id: true, name: true },
+    orderBy: { name: "asc" },
+    take: 200,
   });
 
 export const createTeam = (organizationId: string, userId: string, name: string) =>
@@ -180,22 +241,36 @@ export const removeServiceArea = (organizationId: string, areaId: string) =>
     data: { isActive: false },
   });
 
-// Used by report matching: ids of active organizations with an active
-// capability for exactly `categoryId` (on an active category) and an active
-// service area covering the point. ST_Covers on geography uses the GiST index
-// and counts points on the boundary as inside.
+// Used by report matching: ids of active organizations that have an active
+// capability for `categoryId` OR any of its ancestors (a capability for
+// "Environment" covers a "Waste" report), and an active service area covering
+// the point. ST_Covers on geography uses the GiST index and counts points on
+// the boundary as inside.
+//
+// The ancestor walk is safe: the hierarchy triggers guarantee no cycles, and
+// "active => active parent" means every ancestor of an active category is
+// active, so only the starting category's isActive needs checking.
+// `db` lets report verification run the match inside its own transaction.
 export const findOrganizationsServing = async (
   point: { lat: number; lng: number },
-  categoryId: string
+  categoryId: string,
+  db: Prisma.TransactionClient = prisma
 ): Promise<string[]> => {
-  const rows = await prisma.$queryRaw<{ id: string }[]>`
+  const rows = await db.$queryRaw<{ id: string }[]>`
+    WITH RECURSIVE lineage AS (
+      SELECT "id", "parentId" FROM "Category" WHERE "id" = ${categoryId} AND "isActive"
+      UNION ALL
+      SELECT c."id", c."parentId" FROM "Category" c JOIN lineage l ON c."id" = l."parentId"
+    )
     SELECT o."id"
     FROM "Organization" o
-    JOIN "OrganizationCategory" oc
-      ON oc."organizationId" = o."id" AND oc."categoryId" = ${categoryId} AND oc."isActive"
-    JOIN "Category" c
-      ON c."id" = oc."categoryId" AND c."isActive"
     WHERE o."isActive"
+      AND EXISTS (
+        SELECT 1
+        FROM "OrganizationCategory" oc
+        JOIN lineage l ON l."id" = oc."categoryId"
+        WHERE oc."organizationId" = o."id" AND oc."isActive"
+      )
       AND EXISTS (
         SELECT 1
         FROM "OrganizationServiceArea" sa

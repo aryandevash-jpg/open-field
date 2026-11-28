@@ -12,6 +12,7 @@ import {
   teamParamsSchema,
 } from "./organization.schema.js";
 import * as organizationService from "./organization.service.js";
+import { listOrganizationAssignments } from "../assignments/assignment.service.js";
 
 // Validation (ZodError) and service errors propagate to the central error
 // handler in src/middleware/error-handler.ts.
@@ -87,4 +88,27 @@ export const removeServiceArea = async (req: AuthenticatedRequest, res: Response
   await organizationService.requireOrganizationManager(req.auth!.userId, organizationId);
   await organizationService.removeServiceArea(organizationId, areaId);
   res.status(204).send();
+};
+
+export const listMyOrganizations = async (req: AuthenticatedRequest, res: Response) => {
+  res.status(200).json({ success: true, data: await organizationService.listMyOrganizations(req.auth!.userId) });
+};
+
+export const getOrganization = async (req: AuthenticatedRequest, res: Response) => {
+  const { organizationId } = organizationParamsSchema.parse(req.params);
+  const membership = await organizationService.requireOrganizationMember(req.auth!.userId, organizationId);
+  const organization = await organizationService.getOrganizationDetail(organizationId);
+  res.status(200).json({ success: true, data: { ...organization, myRole: membership.role, myMembershipId: membership.id } });
+};
+
+export const listAssignments = async (req: AuthenticatedRequest, res: Response) => {
+  const { organizationId } = organizationParamsSchema.parse(req.params);
+  await organizationService.requireOrganizationMember(req.auth!.userId, organizationId);
+  res.status(200).json({ success: true, data: await listOrganizationAssignments(organizationId) });
+};
+
+export const listOtherOrganizations = async (req: AuthenticatedRequest, res: Response) => {
+  const { organizationId } = organizationParamsSchema.parse(req.params);
+  await organizationService.requireOrganizationMember(req.auth!.userId, organizationId);
+  res.status(200).json({ success: true, data: await organizationService.listOtherOrganizations(organizationId) });
 };

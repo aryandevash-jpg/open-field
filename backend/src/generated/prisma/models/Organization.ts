@@ -194,6 +194,11 @@ export type OrganizationWhereInput = {
   memberships?: Prisma.OrganizationMembershipListRelationFilter
   serviceAreas?: Prisma.OrganizationServiceAreaListRelationFilter
   teams?: Prisma.TeamListRelationFilter
+  hostedEvents?: Prisma.EventListRelationFilter
+  eventParticipations?: Prisma.EventParticipationListRelationFilter
+  reportOpportunities?: Prisma.ReportOpportunityListRelationFilter
+  assignments?: Prisma.AssignmentListRelationFilter
+  collaborations?: Prisma.AssignmentCollaborationListRelationFilter
 }
 
 export type OrganizationOrderByWithRelationInput = {
@@ -207,6 +212,11 @@ export type OrganizationOrderByWithRelationInput = {
   memberships?: Prisma.OrganizationMembershipOrderByRelationAggregateInput
   serviceAreas?: Prisma.OrganizationServiceAreaOrderByRelationAggregateInput
   teams?: Prisma.TeamOrderByRelationAggregateInput
+  hostedEvents?: Prisma.EventOrderByRelationAggregateInput
+  eventParticipations?: Prisma.EventParticipationOrderByRelationAggregateInput
+  reportOpportunities?: Prisma.ReportOpportunityOrderByRelationAggregateInput
+  assignments?: Prisma.AssignmentOrderByRelationAggregateInput
+  collaborations?: Prisma.AssignmentCollaborationOrderByRelationAggregateInput
 }
 
 export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
@@ -223,6 +233,11 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   memberships?: Prisma.OrganizationMembershipListRelationFilter
   serviceAreas?: Prisma.OrganizationServiceAreaListRelationFilter
   teams?: Prisma.TeamListRelationFilter
+  hostedEvents?: Prisma.EventListRelationFilter
+  eventParticipations?: Prisma.EventParticipationListRelationFilter
+  reportOpportunities?: Prisma.ReportOpportunityListRelationFilter
+  assignments?: Prisma.AssignmentListRelationFilter
+  collaborations?: Prisma.AssignmentCollaborationListRelationFilter
 }, "id">
 
 export type OrganizationOrderByWithAggregationInput = {
@@ -260,6 +275,11 @@ export type OrganizationCreateInput = {
   memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutOrganizationInput
   serviceAreas?: Prisma.OrganizationServiceAreaCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  hostedEvents?: Prisma.EventCreateNestedManyWithoutHostOrganizationInput
+  eventParticipations?: Prisma.EventParticipationCreateNestedManyWithoutOrganizationInput
+  reportOpportunities?: Prisma.ReportOpportunityCreateNestedManyWithoutOrganizationInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutOrganizationInput
+  collaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateInput = {
@@ -273,6 +293,11 @@ export type OrganizationUncheckedCreateInput = {
   memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutOrganizationInput
   serviceAreas?: Prisma.OrganizationServiceAreaUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  hostedEvents?: Prisma.EventUncheckedCreateNestedManyWithoutHostOrganizationInput
+  eventParticipations?: Prisma.EventParticipationUncheckedCreateNestedManyWithoutOrganizationInput
+  reportOpportunities?: Prisma.ReportOpportunityUncheckedCreateNestedManyWithoutOrganizationInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutOrganizationInput
+  collaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUpdateInput = {
@@ -286,6 +311,11 @@ export type OrganizationUpdateInput = {
   memberships?: Prisma.OrganizationMembershipUpdateManyWithoutOrganizationNestedInput
   serviceAreas?: Prisma.OrganizationServiceAreaUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  hostedEvents?: Prisma.EventUpdateManyWithoutHostOrganizationNestedInput
+  eventParticipations?: Prisma.EventParticipationUpdateManyWithoutOrganizationNestedInput
+  reportOpportunities?: Prisma.ReportOpportunityUpdateManyWithoutOrganizationNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutOrganizationNestedInput
+  collaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateInput = {
@@ -299,6 +329,11 @@ export type OrganizationUncheckedUpdateInput = {
   memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutOrganizationNestedInput
   serviceAreas?: Prisma.OrganizationServiceAreaUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  hostedEvents?: Prisma.EventUncheckedUpdateManyWithoutHostOrganizationNestedInput
+  eventParticipations?: Prisma.EventParticipationUncheckedUpdateManyWithoutOrganizationNestedInput
+  reportOpportunities?: Prisma.ReportOpportunityUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  collaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateManyInput = {
@@ -414,6 +449,76 @@ export type OrganizationUpdateOneRequiredWithoutServiceAreasNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutServiceAreasInput, Prisma.OrganizationUpdateWithoutServiceAreasInput>, Prisma.OrganizationUncheckedUpdateWithoutServiceAreasInput>
 }
 
+export type OrganizationCreateNestedOneWithoutHostedEventsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutHostedEventsInput, Prisma.OrganizationUncheckedCreateWithoutHostedEventsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutHostedEventsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutHostedEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutHostedEventsInput, Prisma.OrganizationUncheckedCreateWithoutHostedEventsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutHostedEventsInput
+  upsert?: Prisma.OrganizationUpsertWithoutHostedEventsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutHostedEventsInput, Prisma.OrganizationUpdateWithoutHostedEventsInput>, Prisma.OrganizationUncheckedUpdateWithoutHostedEventsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutEventParticipationsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutEventParticipationsInput, Prisma.OrganizationUncheckedCreateWithoutEventParticipationsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutEventParticipationsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutEventParticipationsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutEventParticipationsInput, Prisma.OrganizationUncheckedCreateWithoutEventParticipationsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutEventParticipationsInput
+  upsert?: Prisma.OrganizationUpsertWithoutEventParticipationsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutEventParticipationsInput, Prisma.OrganizationUpdateWithoutEventParticipationsInput>, Prisma.OrganizationUncheckedUpdateWithoutEventParticipationsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutReportOpportunitiesInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutReportOpportunitiesInput, Prisma.OrganizationUncheckedCreateWithoutReportOpportunitiesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutReportOpportunitiesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutReportOpportunitiesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutReportOpportunitiesInput, Prisma.OrganizationUncheckedCreateWithoutReportOpportunitiesInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutReportOpportunitiesInput
+  upsert?: Prisma.OrganizationUpsertWithoutReportOpportunitiesInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutReportOpportunitiesInput, Prisma.OrganizationUpdateWithoutReportOpportunitiesInput>, Prisma.OrganizationUncheckedUpdateWithoutReportOpportunitiesInput>
+}
+
+export type OrganizationCreateNestedOneWithoutAssignmentsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutAssignmentsInput, Prisma.OrganizationUncheckedCreateWithoutAssignmentsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutAssignmentsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutAssignmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutAssignmentsInput, Prisma.OrganizationUncheckedCreateWithoutAssignmentsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutAssignmentsInput
+  upsert?: Prisma.OrganizationUpsertWithoutAssignmentsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutAssignmentsInput, Prisma.OrganizationUpdateWithoutAssignmentsInput>, Prisma.OrganizationUncheckedUpdateWithoutAssignmentsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutCollaborationsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutCollaborationsInput, Prisma.OrganizationUncheckedCreateWithoutCollaborationsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutCollaborationsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutCollaborationsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutCollaborationsInput, Prisma.OrganizationUncheckedCreateWithoutCollaborationsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutCollaborationsInput
+  upsert?: Prisma.OrganizationUpsertWithoutCollaborationsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutCollaborationsInput, Prisma.OrganizationUpdateWithoutCollaborationsInput>, Prisma.OrganizationUncheckedUpdateWithoutCollaborationsInput>
+}
+
 export type OrganizationCreateWithoutMembershipsInput = {
   id?: string
   name: string
@@ -424,6 +529,11 @@ export type OrganizationCreateWithoutMembershipsInput = {
   organizationCategories?: Prisma.OrganizationCategoryCreateNestedManyWithoutOrganizationInput
   serviceAreas?: Prisma.OrganizationServiceAreaCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  hostedEvents?: Prisma.EventCreateNestedManyWithoutHostOrganizationInput
+  eventParticipations?: Prisma.EventParticipationCreateNestedManyWithoutOrganizationInput
+  reportOpportunities?: Prisma.ReportOpportunityCreateNestedManyWithoutOrganizationInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutOrganizationInput
+  collaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutMembershipsInput = {
@@ -436,6 +546,11 @@ export type OrganizationUncheckedCreateWithoutMembershipsInput = {
   organizationCategories?: Prisma.OrganizationCategoryUncheckedCreateNestedManyWithoutOrganizationInput
   serviceAreas?: Prisma.OrganizationServiceAreaUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  hostedEvents?: Prisma.EventUncheckedCreateNestedManyWithoutHostOrganizationInput
+  eventParticipations?: Prisma.EventParticipationUncheckedCreateNestedManyWithoutOrganizationInput
+  reportOpportunities?: Prisma.ReportOpportunityUncheckedCreateNestedManyWithoutOrganizationInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutOrganizationInput
+  collaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutMembershipsInput = {
@@ -464,6 +579,11 @@ export type OrganizationUpdateWithoutMembershipsInput = {
   organizationCategories?: Prisma.OrganizationCategoryUpdateManyWithoutOrganizationNestedInput
   serviceAreas?: Prisma.OrganizationServiceAreaUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  hostedEvents?: Prisma.EventUpdateManyWithoutHostOrganizationNestedInput
+  eventParticipations?: Prisma.EventParticipationUpdateManyWithoutOrganizationNestedInput
+  reportOpportunities?: Prisma.ReportOpportunityUpdateManyWithoutOrganizationNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutOrganizationNestedInput
+  collaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutMembershipsInput = {
@@ -476,6 +596,11 @@ export type OrganizationUncheckedUpdateWithoutMembershipsInput = {
   organizationCategories?: Prisma.OrganizationCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
   serviceAreas?: Prisma.OrganizationServiceAreaUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  hostedEvents?: Prisma.EventUncheckedUpdateManyWithoutHostOrganizationNestedInput
+  eventParticipations?: Prisma.EventParticipationUncheckedUpdateManyWithoutOrganizationNestedInput
+  reportOpportunities?: Prisma.ReportOpportunityUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  collaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutTeamsInput = {
@@ -488,6 +613,11 @@ export type OrganizationCreateWithoutTeamsInput = {
   organizationCategories?: Prisma.OrganizationCategoryCreateNestedManyWithoutOrganizationInput
   memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutOrganizationInput
   serviceAreas?: Prisma.OrganizationServiceAreaCreateNestedManyWithoutOrganizationInput
+  hostedEvents?: Prisma.EventCreateNestedManyWithoutHostOrganizationInput
+  eventParticipations?: Prisma.EventParticipationCreateNestedManyWithoutOrganizationInput
+  reportOpportunities?: Prisma.ReportOpportunityCreateNestedManyWithoutOrganizationInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutOrganizationInput
+  collaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutTeamsInput = {
@@ -500,6 +630,11 @@ export type OrganizationUncheckedCreateWithoutTeamsInput = {
   organizationCategories?: Prisma.OrganizationCategoryUncheckedCreateNestedManyWithoutOrganizationInput
   memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutOrganizationInput
   serviceAreas?: Prisma.OrganizationServiceAreaUncheckedCreateNestedManyWithoutOrganizationInput
+  hostedEvents?: Prisma.EventUncheckedCreateNestedManyWithoutHostOrganizationInput
+  eventParticipations?: Prisma.EventParticipationUncheckedCreateNestedManyWithoutOrganizationInput
+  reportOpportunities?: Prisma.ReportOpportunityUncheckedCreateNestedManyWithoutOrganizationInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutOrganizationInput
+  collaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutTeamsInput = {
@@ -528,6 +663,11 @@ export type OrganizationUpdateWithoutTeamsInput = {
   organizationCategories?: Prisma.OrganizationCategoryUpdateManyWithoutOrganizationNestedInput
   memberships?: Prisma.OrganizationMembershipUpdateManyWithoutOrganizationNestedInput
   serviceAreas?: Prisma.OrganizationServiceAreaUpdateManyWithoutOrganizationNestedInput
+  hostedEvents?: Prisma.EventUpdateManyWithoutHostOrganizationNestedInput
+  eventParticipations?: Prisma.EventParticipationUpdateManyWithoutOrganizationNestedInput
+  reportOpportunities?: Prisma.ReportOpportunityUpdateManyWithoutOrganizationNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutOrganizationNestedInput
+  collaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutTeamsInput = {
@@ -540,6 +680,11 @@ export type OrganizationUncheckedUpdateWithoutTeamsInput = {
   organizationCategories?: Prisma.OrganizationCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
   memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutOrganizationNestedInput
   serviceAreas?: Prisma.OrganizationServiceAreaUncheckedUpdateManyWithoutOrganizationNestedInput
+  hostedEvents?: Prisma.EventUncheckedUpdateManyWithoutHostOrganizationNestedInput
+  eventParticipations?: Prisma.EventParticipationUncheckedUpdateManyWithoutOrganizationNestedInput
+  reportOpportunities?: Prisma.ReportOpportunityUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  collaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutOrganizationCategoriesInput = {
@@ -552,6 +697,11 @@ export type OrganizationCreateWithoutOrganizationCategoriesInput = {
   memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutOrganizationInput
   serviceAreas?: Prisma.OrganizationServiceAreaCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  hostedEvents?: Prisma.EventCreateNestedManyWithoutHostOrganizationInput
+  eventParticipations?: Prisma.EventParticipationCreateNestedManyWithoutOrganizationInput
+  reportOpportunities?: Prisma.ReportOpportunityCreateNestedManyWithoutOrganizationInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutOrganizationInput
+  collaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutOrganizationCategoriesInput = {
@@ -564,6 +714,11 @@ export type OrganizationUncheckedCreateWithoutOrganizationCategoriesInput = {
   memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutOrganizationInput
   serviceAreas?: Prisma.OrganizationServiceAreaUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  hostedEvents?: Prisma.EventUncheckedCreateNestedManyWithoutHostOrganizationInput
+  eventParticipations?: Prisma.EventParticipationUncheckedCreateNestedManyWithoutOrganizationInput
+  reportOpportunities?: Prisma.ReportOpportunityUncheckedCreateNestedManyWithoutOrganizationInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutOrganizationInput
+  collaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutOrganizationCategoriesInput = {
@@ -592,6 +747,11 @@ export type OrganizationUpdateWithoutOrganizationCategoriesInput = {
   memberships?: Prisma.OrganizationMembershipUpdateManyWithoutOrganizationNestedInput
   serviceAreas?: Prisma.OrganizationServiceAreaUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  hostedEvents?: Prisma.EventUpdateManyWithoutHostOrganizationNestedInput
+  eventParticipations?: Prisma.EventParticipationUpdateManyWithoutOrganizationNestedInput
+  reportOpportunities?: Prisma.ReportOpportunityUpdateManyWithoutOrganizationNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutOrganizationNestedInput
+  collaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutOrganizationCategoriesInput = {
@@ -604,6 +764,11 @@ export type OrganizationUncheckedUpdateWithoutOrganizationCategoriesInput = {
   memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutOrganizationNestedInput
   serviceAreas?: Prisma.OrganizationServiceAreaUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  hostedEvents?: Prisma.EventUncheckedUpdateManyWithoutHostOrganizationNestedInput
+  eventParticipations?: Prisma.EventParticipationUncheckedUpdateManyWithoutOrganizationNestedInput
+  reportOpportunities?: Prisma.ReportOpportunityUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  collaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutServiceAreasInput = {
@@ -616,6 +781,11 @@ export type OrganizationCreateWithoutServiceAreasInput = {
   organizationCategories?: Prisma.OrganizationCategoryCreateNestedManyWithoutOrganizationInput
   memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  hostedEvents?: Prisma.EventCreateNestedManyWithoutHostOrganizationInput
+  eventParticipations?: Prisma.EventParticipationCreateNestedManyWithoutOrganizationInput
+  reportOpportunities?: Prisma.ReportOpportunityCreateNestedManyWithoutOrganizationInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutOrganizationInput
+  collaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutServiceAreasInput = {
@@ -628,6 +798,11 @@ export type OrganizationUncheckedCreateWithoutServiceAreasInput = {
   organizationCategories?: Prisma.OrganizationCategoryUncheckedCreateNestedManyWithoutOrganizationInput
   memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutOrganizationInput
   teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  hostedEvents?: Prisma.EventUncheckedCreateNestedManyWithoutHostOrganizationInput
+  eventParticipations?: Prisma.EventParticipationUncheckedCreateNestedManyWithoutOrganizationInput
+  reportOpportunities?: Prisma.ReportOpportunityUncheckedCreateNestedManyWithoutOrganizationInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutOrganizationInput
+  collaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutServiceAreasInput = {
@@ -656,6 +831,11 @@ export type OrganizationUpdateWithoutServiceAreasInput = {
   organizationCategories?: Prisma.OrganizationCategoryUpdateManyWithoutOrganizationNestedInput
   memberships?: Prisma.OrganizationMembershipUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  hostedEvents?: Prisma.EventUpdateManyWithoutHostOrganizationNestedInput
+  eventParticipations?: Prisma.EventParticipationUpdateManyWithoutOrganizationNestedInput
+  reportOpportunities?: Prisma.ReportOpportunityUpdateManyWithoutOrganizationNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutOrganizationNestedInput
+  collaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutServiceAreasInput = {
@@ -668,6 +848,431 @@ export type OrganizationUncheckedUpdateWithoutServiceAreasInput = {
   organizationCategories?: Prisma.OrganizationCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
   memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutOrganizationNestedInput
   teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  hostedEvents?: Prisma.EventUncheckedUpdateManyWithoutHostOrganizationNestedInput
+  eventParticipations?: Prisma.EventParticipationUncheckedUpdateManyWithoutOrganizationNestedInput
+  reportOpportunities?: Prisma.ReportOpportunityUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  collaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutHostedEventsInput = {
+  id?: string
+  name: string
+  description?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organizationCategories?: Prisma.OrganizationCategoryCreateNestedManyWithoutOrganizationInput
+  memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutOrganizationInput
+  serviceAreas?: Prisma.OrganizationServiceAreaCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  eventParticipations?: Prisma.EventParticipationCreateNestedManyWithoutOrganizationInput
+  reportOpportunities?: Prisma.ReportOpportunityCreateNestedManyWithoutOrganizationInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutOrganizationInput
+  collaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutHostedEventsInput = {
+  id?: string
+  name: string
+  description?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  eventParticipations?: Prisma.EventParticipationUncheckedCreateNestedManyWithoutOrganizationInput
+  reportOpportunities?: Prisma.ReportOpportunityUncheckedCreateNestedManyWithoutOrganizationInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutOrganizationInput
+  collaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutHostedEventsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutHostedEventsInput, Prisma.OrganizationUncheckedCreateWithoutHostedEventsInput>
+}
+
+export type OrganizationUpsertWithoutHostedEventsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutHostedEventsInput, Prisma.OrganizationUncheckedUpdateWithoutHostedEventsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutHostedEventsInput, Prisma.OrganizationUncheckedCreateWithoutHostedEventsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutHostedEventsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutHostedEventsInput, Prisma.OrganizationUncheckedUpdateWithoutHostedEventsInput>
+}
+
+export type OrganizationUpdateWithoutHostedEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUpdateManyWithoutOrganizationNestedInput
+  memberships?: Prisma.OrganizationMembershipUpdateManyWithoutOrganizationNestedInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  eventParticipations?: Prisma.EventParticipationUpdateManyWithoutOrganizationNestedInput
+  reportOpportunities?: Prisma.ReportOpportunityUpdateManyWithoutOrganizationNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutOrganizationNestedInput
+  collaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutHostedEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  eventParticipations?: Prisma.EventParticipationUncheckedUpdateManyWithoutOrganizationNestedInput
+  reportOpportunities?: Prisma.ReportOpportunityUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  collaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutEventParticipationsInput = {
+  id?: string
+  name: string
+  description?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organizationCategories?: Prisma.OrganizationCategoryCreateNestedManyWithoutOrganizationInput
+  memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutOrganizationInput
+  serviceAreas?: Prisma.OrganizationServiceAreaCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  hostedEvents?: Prisma.EventCreateNestedManyWithoutHostOrganizationInput
+  reportOpportunities?: Prisma.ReportOpportunityCreateNestedManyWithoutOrganizationInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutOrganizationInput
+  collaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutEventParticipationsInput = {
+  id?: string
+  name: string
+  description?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  hostedEvents?: Prisma.EventUncheckedCreateNestedManyWithoutHostOrganizationInput
+  reportOpportunities?: Prisma.ReportOpportunityUncheckedCreateNestedManyWithoutOrganizationInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutOrganizationInput
+  collaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutEventParticipationsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutEventParticipationsInput, Prisma.OrganizationUncheckedCreateWithoutEventParticipationsInput>
+}
+
+export type OrganizationUpsertWithoutEventParticipationsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutEventParticipationsInput, Prisma.OrganizationUncheckedUpdateWithoutEventParticipationsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutEventParticipationsInput, Prisma.OrganizationUncheckedCreateWithoutEventParticipationsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutEventParticipationsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutEventParticipationsInput, Prisma.OrganizationUncheckedUpdateWithoutEventParticipationsInput>
+}
+
+export type OrganizationUpdateWithoutEventParticipationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUpdateManyWithoutOrganizationNestedInput
+  memberships?: Prisma.OrganizationMembershipUpdateManyWithoutOrganizationNestedInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  hostedEvents?: Prisma.EventUpdateManyWithoutHostOrganizationNestedInput
+  reportOpportunities?: Prisma.ReportOpportunityUpdateManyWithoutOrganizationNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutOrganizationNestedInput
+  collaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutEventParticipationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  hostedEvents?: Prisma.EventUncheckedUpdateManyWithoutHostOrganizationNestedInput
+  reportOpportunities?: Prisma.ReportOpportunityUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  collaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutReportOpportunitiesInput = {
+  id?: string
+  name: string
+  description?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organizationCategories?: Prisma.OrganizationCategoryCreateNestedManyWithoutOrganizationInput
+  memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutOrganizationInput
+  serviceAreas?: Prisma.OrganizationServiceAreaCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  hostedEvents?: Prisma.EventCreateNestedManyWithoutHostOrganizationInput
+  eventParticipations?: Prisma.EventParticipationCreateNestedManyWithoutOrganizationInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutOrganizationInput
+  collaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutReportOpportunitiesInput = {
+  id?: string
+  name: string
+  description?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  hostedEvents?: Prisma.EventUncheckedCreateNestedManyWithoutHostOrganizationInput
+  eventParticipations?: Prisma.EventParticipationUncheckedCreateNestedManyWithoutOrganizationInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutOrganizationInput
+  collaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutReportOpportunitiesInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutReportOpportunitiesInput, Prisma.OrganizationUncheckedCreateWithoutReportOpportunitiesInput>
+}
+
+export type OrganizationUpsertWithoutReportOpportunitiesInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutReportOpportunitiesInput, Prisma.OrganizationUncheckedUpdateWithoutReportOpportunitiesInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutReportOpportunitiesInput, Prisma.OrganizationUncheckedCreateWithoutReportOpportunitiesInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutReportOpportunitiesInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutReportOpportunitiesInput, Prisma.OrganizationUncheckedUpdateWithoutReportOpportunitiesInput>
+}
+
+export type OrganizationUpdateWithoutReportOpportunitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUpdateManyWithoutOrganizationNestedInput
+  memberships?: Prisma.OrganizationMembershipUpdateManyWithoutOrganizationNestedInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  hostedEvents?: Prisma.EventUpdateManyWithoutHostOrganizationNestedInput
+  eventParticipations?: Prisma.EventParticipationUpdateManyWithoutOrganizationNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutOrganizationNestedInput
+  collaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutReportOpportunitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  hostedEvents?: Prisma.EventUncheckedUpdateManyWithoutHostOrganizationNestedInput
+  eventParticipations?: Prisma.EventParticipationUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
+  collaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutAssignmentsInput = {
+  id?: string
+  name: string
+  description?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organizationCategories?: Prisma.OrganizationCategoryCreateNestedManyWithoutOrganizationInput
+  memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutOrganizationInput
+  serviceAreas?: Prisma.OrganizationServiceAreaCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  hostedEvents?: Prisma.EventCreateNestedManyWithoutHostOrganizationInput
+  eventParticipations?: Prisma.EventParticipationCreateNestedManyWithoutOrganizationInput
+  reportOpportunities?: Prisma.ReportOpportunityCreateNestedManyWithoutOrganizationInput
+  collaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutAssignmentsInput = {
+  id?: string
+  name: string
+  description?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  hostedEvents?: Prisma.EventUncheckedCreateNestedManyWithoutHostOrganizationInput
+  eventParticipations?: Prisma.EventParticipationUncheckedCreateNestedManyWithoutOrganizationInput
+  reportOpportunities?: Prisma.ReportOpportunityUncheckedCreateNestedManyWithoutOrganizationInput
+  collaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutAssignmentsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutAssignmentsInput, Prisma.OrganizationUncheckedCreateWithoutAssignmentsInput>
+}
+
+export type OrganizationUpsertWithoutAssignmentsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutAssignmentsInput, Prisma.OrganizationUncheckedUpdateWithoutAssignmentsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutAssignmentsInput, Prisma.OrganizationUncheckedCreateWithoutAssignmentsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutAssignmentsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutAssignmentsInput, Prisma.OrganizationUncheckedUpdateWithoutAssignmentsInput>
+}
+
+export type OrganizationUpdateWithoutAssignmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUpdateManyWithoutOrganizationNestedInput
+  memberships?: Prisma.OrganizationMembershipUpdateManyWithoutOrganizationNestedInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  hostedEvents?: Prisma.EventUpdateManyWithoutHostOrganizationNestedInput
+  eventParticipations?: Prisma.EventParticipationUpdateManyWithoutOrganizationNestedInput
+  reportOpportunities?: Prisma.ReportOpportunityUpdateManyWithoutOrganizationNestedInput
+  collaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutAssignmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  hostedEvents?: Prisma.EventUncheckedUpdateManyWithoutHostOrganizationNestedInput
+  eventParticipations?: Prisma.EventParticipationUncheckedUpdateManyWithoutOrganizationNestedInput
+  reportOpportunities?: Prisma.ReportOpportunityUncheckedUpdateManyWithoutOrganizationNestedInput
+  collaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutCollaborationsInput = {
+  id?: string
+  name: string
+  description?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organizationCategories?: Prisma.OrganizationCategoryCreateNestedManyWithoutOrganizationInput
+  memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutOrganizationInput
+  serviceAreas?: Prisma.OrganizationServiceAreaCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamCreateNestedManyWithoutOrganizationInput
+  hostedEvents?: Prisma.EventCreateNestedManyWithoutHostOrganizationInput
+  eventParticipations?: Prisma.EventParticipationCreateNestedManyWithoutOrganizationInput
+  reportOpportunities?: Prisma.ReportOpportunityCreateNestedManyWithoutOrganizationInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutCollaborationsInput = {
+  id?: string
+  name: string
+  description?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUncheckedCreateNestedManyWithoutOrganizationInput
+  memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutOrganizationInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUncheckedCreateNestedManyWithoutOrganizationInput
+  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutOrganizationInput
+  hostedEvents?: Prisma.EventUncheckedCreateNestedManyWithoutHostOrganizationInput
+  eventParticipations?: Prisma.EventParticipationUncheckedCreateNestedManyWithoutOrganizationInput
+  reportOpportunities?: Prisma.ReportOpportunityUncheckedCreateNestedManyWithoutOrganizationInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutCollaborationsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutCollaborationsInput, Prisma.OrganizationUncheckedCreateWithoutCollaborationsInput>
+}
+
+export type OrganizationUpsertWithoutCollaborationsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutCollaborationsInput, Prisma.OrganizationUncheckedUpdateWithoutCollaborationsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutCollaborationsInput, Prisma.OrganizationUncheckedCreateWithoutCollaborationsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutCollaborationsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutCollaborationsInput, Prisma.OrganizationUncheckedUpdateWithoutCollaborationsInput>
+}
+
+export type OrganizationUpdateWithoutCollaborationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUpdateManyWithoutOrganizationNestedInput
+  memberships?: Prisma.OrganizationMembershipUpdateManyWithoutOrganizationNestedInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUpdateManyWithoutOrganizationNestedInput
+  hostedEvents?: Prisma.EventUpdateManyWithoutHostOrganizationNestedInput
+  eventParticipations?: Prisma.EventParticipationUpdateManyWithoutOrganizationNestedInput
+  reportOpportunities?: Prisma.ReportOpportunityUpdateManyWithoutOrganizationNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutCollaborationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organizationCategories?: Prisma.OrganizationCategoryUncheckedUpdateManyWithoutOrganizationNestedInput
+  memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutOrganizationNestedInput
+  serviceAreas?: Prisma.OrganizationServiceAreaUncheckedUpdateManyWithoutOrganizationNestedInput
+  teams?: Prisma.TeamUncheckedUpdateManyWithoutOrganizationNestedInput
+  hostedEvents?: Prisma.EventUncheckedUpdateManyWithoutHostOrganizationNestedInput
+  eventParticipations?: Prisma.EventParticipationUncheckedUpdateManyWithoutOrganizationNestedInput
+  reportOpportunities?: Prisma.ReportOpportunityUncheckedUpdateManyWithoutOrganizationNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 
@@ -680,6 +1285,11 @@ export type OrganizationCountOutputType = {
   memberships: number
   serviceAreas: number
   teams: number
+  hostedEvents: number
+  eventParticipations: number
+  reportOpportunities: number
+  assignments: number
+  collaborations: number
 }
 
 export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -687,6 +1297,11 @@ export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Exte
   memberships?: boolean | OrganizationCountOutputTypeCountMembershipsArgs
   serviceAreas?: boolean | OrganizationCountOutputTypeCountServiceAreasArgs
   teams?: boolean | OrganizationCountOutputTypeCountTeamsArgs
+  hostedEvents?: boolean | OrganizationCountOutputTypeCountHostedEventsArgs
+  eventParticipations?: boolean | OrganizationCountOutputTypeCountEventParticipationsArgs
+  reportOpportunities?: boolean | OrganizationCountOutputTypeCountReportOpportunitiesArgs
+  assignments?: boolean | OrganizationCountOutputTypeCountAssignmentsArgs
+  collaborations?: boolean | OrganizationCountOutputTypeCountCollaborationsArgs
 }
 
 /**
@@ -727,6 +1342,41 @@ export type OrganizationCountOutputTypeCountTeamsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.TeamWhereInput
 }
 
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountHostedEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EventWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountEventParticipationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EventParticipationWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountReportOpportunitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReportOpportunityWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AssignmentWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountCollaborationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AssignmentCollaborationWhereInput
+}
+
 
 export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -739,6 +1389,11 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   memberships?: boolean | Prisma.Organization$membershipsArgs<ExtArgs>
   serviceAreas?: boolean | Prisma.Organization$serviceAreasArgs<ExtArgs>
   teams?: boolean | Prisma.Organization$teamsArgs<ExtArgs>
+  hostedEvents?: boolean | Prisma.Organization$hostedEventsArgs<ExtArgs>
+  eventParticipations?: boolean | Prisma.Organization$eventParticipationsArgs<ExtArgs>
+  reportOpportunities?: boolean | Prisma.Organization$reportOpportunitiesArgs<ExtArgs>
+  assignments?: boolean | Prisma.Organization$assignmentsArgs<ExtArgs>
+  collaborations?: boolean | Prisma.Organization$collaborationsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organization"]>
 
@@ -775,6 +1430,11 @@ export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.Interna
   memberships?: boolean | Prisma.Organization$membershipsArgs<ExtArgs>
   serviceAreas?: boolean | Prisma.Organization$serviceAreasArgs<ExtArgs>
   teams?: boolean | Prisma.Organization$teamsArgs<ExtArgs>
+  hostedEvents?: boolean | Prisma.Organization$hostedEventsArgs<ExtArgs>
+  eventParticipations?: boolean | Prisma.Organization$eventParticipationsArgs<ExtArgs>
+  reportOpportunities?: boolean | Prisma.Organization$reportOpportunitiesArgs<ExtArgs>
+  assignments?: boolean | Prisma.Organization$assignmentsArgs<ExtArgs>
+  collaborations?: boolean | Prisma.Organization$collaborationsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrganizationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -787,6 +1447,11 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     memberships: Prisma.$OrganizationMembershipPayload<ExtArgs>[]
     serviceAreas: Prisma.$OrganizationServiceAreaPayload<ExtArgs>[]
     teams: Prisma.$TeamPayload<ExtArgs>[]
+    hostedEvents: Prisma.$EventPayload<ExtArgs>[]
+    eventParticipations: Prisma.$EventParticipationPayload<ExtArgs>[]
+    reportOpportunities: Prisma.$ReportOpportunityPayload<ExtArgs>[]
+    assignments: Prisma.$AssignmentPayload<ExtArgs>[]
+    collaborations: Prisma.$AssignmentCollaborationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1193,6 +1858,11 @@ export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends run
   memberships<T extends Prisma.Organization$membershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$membershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrganizationMembershipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   serviceAreas<T extends Prisma.Organization$serviceAreasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$serviceAreasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrganizationServiceAreaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   teams<T extends Prisma.Organization$teamsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$teamsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  hostedEvents<T extends Prisma.Organization$hostedEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$hostedEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  eventParticipations<T extends Prisma.Organization$eventParticipationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$eventParticipationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventParticipationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reportOpportunities<T extends Prisma.Organization$reportOpportunitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$reportOpportunitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReportOpportunityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  assignments<T extends Prisma.Organization$assignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  collaborations<T extends Prisma.Organization$collaborationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$collaborationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssignmentCollaborationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1714,6 +2384,126 @@ export type Organization$teamsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.TeamScalarFieldEnum | Prisma.TeamScalarFieldEnum[]
+}
+
+/**
+ * Organization.hostedEvents
+ */
+export type Organization$hostedEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Event
+   */
+  select?: Prisma.EventSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Event
+   */
+  omit?: Prisma.EventOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EventInclude<ExtArgs> | null
+  where?: Prisma.EventWhereInput
+  orderBy?: Prisma.EventOrderByWithRelationInput | Prisma.EventOrderByWithRelationInput[]
+  cursor?: Prisma.EventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EventScalarFieldEnum | Prisma.EventScalarFieldEnum[]
+}
+
+/**
+ * Organization.eventParticipations
+ */
+export type Organization$eventParticipationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EventParticipation
+   */
+  select?: Prisma.EventParticipationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EventParticipation
+   */
+  omit?: Prisma.EventParticipationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EventParticipationInclude<ExtArgs> | null
+  where?: Prisma.EventParticipationWhereInput
+  orderBy?: Prisma.EventParticipationOrderByWithRelationInput | Prisma.EventParticipationOrderByWithRelationInput[]
+  cursor?: Prisma.EventParticipationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EventParticipationScalarFieldEnum | Prisma.EventParticipationScalarFieldEnum[]
+}
+
+/**
+ * Organization.reportOpportunities
+ */
+export type Organization$reportOpportunitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ReportOpportunity
+   */
+  select?: Prisma.ReportOpportunitySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ReportOpportunity
+   */
+  omit?: Prisma.ReportOpportunityOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReportOpportunityInclude<ExtArgs> | null
+  where?: Prisma.ReportOpportunityWhereInput
+  orderBy?: Prisma.ReportOpportunityOrderByWithRelationInput | Prisma.ReportOpportunityOrderByWithRelationInput[]
+  cursor?: Prisma.ReportOpportunityWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReportOpportunityScalarFieldEnum | Prisma.ReportOpportunityScalarFieldEnum[]
+}
+
+/**
+ * Organization.assignments
+ */
+export type Organization$assignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Assignment
+   */
+  select?: Prisma.AssignmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Assignment
+   */
+  omit?: Prisma.AssignmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AssignmentInclude<ExtArgs> | null
+  where?: Prisma.AssignmentWhereInput
+  orderBy?: Prisma.AssignmentOrderByWithRelationInput | Prisma.AssignmentOrderByWithRelationInput[]
+  cursor?: Prisma.AssignmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AssignmentScalarFieldEnum | Prisma.AssignmentScalarFieldEnum[]
+}
+
+/**
+ * Organization.collaborations
+ */
+export type Organization$collaborationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AssignmentCollaboration
+   */
+  select?: Prisma.AssignmentCollaborationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AssignmentCollaboration
+   */
+  omit?: Prisma.AssignmentCollaborationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AssignmentCollaborationInclude<ExtArgs> | null
+  where?: Prisma.AssignmentCollaborationWhereInput
+  orderBy?: Prisma.AssignmentCollaborationOrderByWithRelationInput | Prisma.AssignmentCollaborationOrderByWithRelationInput[]
+  cursor?: Prisma.AssignmentCollaborationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AssignmentCollaborationScalarFieldEnum | Prisma.AssignmentCollaborationScalarFieldEnum[]
 }
 
 /**

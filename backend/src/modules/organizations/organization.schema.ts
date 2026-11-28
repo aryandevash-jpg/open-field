@@ -5,10 +5,16 @@ export const createOrganizationSchema = z.object({
   description: z.string().trim().max(1_000).optional(),
 });
 
-export const addMemberSchema = z.object({
-  userId: z.uuid(),
-  role: z.enum(["ADMIN", "COORDINATOR", "MEMBER"]).default("MEMBER"),
-});
+// Identify the new member by user id or by email (the web app uses email).
+export const addMemberSchema = z
+  .object({
+    userId: z.uuid().optional(),
+    email: z.email().trim().toLowerCase().optional(),
+    role: z.enum(["ADMIN", "COORDINATOR", "MEMBER"]).default("MEMBER"),
+  })
+  .refine((data) => (data.userId === undefined) !== (data.email === undefined), {
+    message: "Provide exactly one of userId or email",
+  });
 
 export const createTeamSchema = z.object({
   name: z.string().trim().min(2).max(120),

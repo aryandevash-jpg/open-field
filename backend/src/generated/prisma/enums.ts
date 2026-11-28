@@ -9,6 +9,59 @@
 * 🟢 You can import this file directly.
 */
 
+export const EventStatus = {
+  ACTIVE: 'ACTIVE',
+  COMPLETED: 'COMPLETED'
+} as const
+
+export type EventStatus = (typeof EventStatus)[keyof typeof EventStatus]
+
+
+export const ParticipationStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type ParticipationStatus = (typeof ParticipationStatus)[keyof typeof ParticipationStatus]
+
+
+export const ReportStatus = {
+  SUBMITTED: 'SUBMITTED',
+  UNDER_REVIEW: 'UNDER_REVIEW',
+  VERIFIED: 'VERIFIED',
+  RESOLUTION_PENDING: 'RESOLUTION_PENDING',
+  RESOLVED: 'RESOLVED',
+  REOPENED: 'REOPENED',
+  REJECTED: 'REJECTED',
+  DUPLICATE: 'DUPLICATE'
+} as const
+
+export type ReportStatus = (typeof ReportStatus)[keyof typeof ReportStatus]
+
+
+export const AssignmentStatus = {
+  CLAIMED: 'CLAIMED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
+  EXPIRED: 'EXPIRED',
+  CANCELLED: 'CANCELLED',
+  TRANSFERRED: 'TRANSFERRED'
+} as const
+
+export type AssignmentStatus = (typeof AssignmentStatus)[keyof typeof AssignmentStatus]
+
+
+export const CollaborationStatus = {
+  INVITED: 'INVITED',
+  ACCEPTED: 'ACCEPTED',
+  DECLINED: 'DECLINED',
+  REVOKED: 'REVOKED'
+} as const
+
+export type CollaborationStatus = (typeof CollaborationStatus)[keyof typeof CollaborationStatus]
+
+
 export const OrganizationRole = {
   OWNER: 'OWNER',
   ADMIN: 'ADMIN',

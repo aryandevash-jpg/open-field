@@ -7,7 +7,11 @@ import {
   createOrganization,
   createServiceArea,
   createTeam,
+  getOrganization,
+  listAssignments,
   listCategoryCapabilities,
+  listMyOrganizations,
+  listOtherOrganizations,
   listServiceAreas,
   removeCategoryCapability,
   removeServiceArea,
@@ -15,7 +19,11 @@ import {
 
 const router = Router();
 
+router.get("/", requireAuth, listMyOrganizations);
 router.post("/", requireAuth, createOrganization);
+router.get("/:organizationId", requireAuth, getOrganization);
+router.get("/:organizationId/assignments", requireAuth, listAssignments);
+router.get("/:organizationId/other-organizations", requireAuth, listOtherOrganizations);
 router.post("/:organizationId/members", requireAuth, addMember);
 router.post("/:organizationId/teams", requireAuth, createTeam);
 router.post("/:organizationId/teams/:teamId/members", requireAuth, addTeamMember);

@@ -81,3 +81,58 @@ export type OrganizationCategory = Prisma.OrganizationCategoryModel
  * 
  */
 export type OrganizationServiceArea = Prisma.OrganizationServiceAreaModel
+/**
+ * Model Event
+ * 
+ */
+export type Event = Prisma.EventModel
+/**
+ * Model EventParticipation
+ * 
+ */
+export type EventParticipation = Prisma.EventParticipationModel
+/**
+ * Model Report
+ * 
+ */
+export type Report = Prisma.ReportModel
+/**
+ * Model ReportMedia
+ * 
+ */
+export type ReportMedia = Prisma.ReportMediaModel
+/**
+ * Model ReportHistory
+ * 
+ */
+export type ReportHistory = Prisma.ReportHistoryModel
+/**
+ * Model ReportOpportunity
+ * 
+ */
+export type ReportOpportunity = Prisma.ReportOpportunityModel
+/**
+ * Model Assignment
+ * 
+ */
+export type Assignment = Prisma.AssignmentModel
+/**
+ * Model AssignmentCollaboration
+ * 
+ */
+export type AssignmentCollaboration = Prisma.AssignmentCollaborationModel
+/**
+ * Model AssignmentCollaborationTeam
+ * 
+ */
+export type AssignmentCollaborationTeam = Prisma.AssignmentCollaborationTeamModel
+/**
+ * Model ReportComment
+ * 
+ */
+export type ReportComment = Prisma.ReportCommentModel
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = Prisma.NotificationModel

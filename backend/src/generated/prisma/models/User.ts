@@ -200,6 +200,15 @@ export type UserWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   memberships?: Prisma.OrganizationMembershipListRelationFilter
   createdTeams?: Prisma.TeamListRelationFilter
+  createdEvents?: Prisma.EventListRelationFilter
+  reviewedParticipations?: Prisma.EventParticipationListRelationFilter
+  submittedReports?: Prisma.ReportListRelationFilter
+  reportHistory?: Prisma.ReportHistoryListRelationFilter
+  claimedAssignments?: Prisma.AssignmentListRelationFilter
+  invitedCollaborations?: Prisma.AssignmentCollaborationListRelationFilter
+  respondedCollaborations?: Prisma.AssignmentCollaborationListRelationFilter
+  comments?: Prisma.ReportCommentListRelationFilter
+  notifications?: Prisma.NotificationListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -212,6 +221,15 @@ export type UserOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   memberships?: Prisma.OrganizationMembershipOrderByRelationAggregateInput
   createdTeams?: Prisma.TeamOrderByRelationAggregateInput
+  createdEvents?: Prisma.EventOrderByRelationAggregateInput
+  reviewedParticipations?: Prisma.EventParticipationOrderByRelationAggregateInput
+  submittedReports?: Prisma.ReportOrderByRelationAggregateInput
+  reportHistory?: Prisma.ReportHistoryOrderByRelationAggregateInput
+  claimedAssignments?: Prisma.AssignmentOrderByRelationAggregateInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationOrderByRelationAggregateInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationOrderByRelationAggregateInput
+  comments?: Prisma.ReportCommentOrderByRelationAggregateInput
+  notifications?: Prisma.NotificationOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -227,6 +245,15 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   memberships?: Prisma.OrganizationMembershipListRelationFilter
   createdTeams?: Prisma.TeamListRelationFilter
+  createdEvents?: Prisma.EventListRelationFilter
+  reviewedParticipations?: Prisma.EventParticipationListRelationFilter
+  submittedReports?: Prisma.ReportListRelationFilter
+  reportHistory?: Prisma.ReportHistoryListRelationFilter
+  claimedAssignments?: Prisma.AssignmentListRelationFilter
+  invitedCollaborations?: Prisma.AssignmentCollaborationListRelationFilter
+  respondedCollaborations?: Prisma.AssignmentCollaborationListRelationFilter
+  comments?: Prisma.ReportCommentListRelationFilter
+  notifications?: Prisma.NotificationListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -265,6 +292,15 @@ export type UserCreateInput = {
   updatedAt?: Date | string
   memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutUserInput
   createdTeams?: Prisma.TeamCreateNestedManyWithoutCreatedByInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  reviewedParticipations?: Prisma.EventParticipationCreateNestedManyWithoutReviewedByInput
+  submittedReports?: Prisma.ReportCreateNestedManyWithoutSubmittedByInput
+  reportHistory?: Prisma.ReportHistoryCreateNestedManyWithoutActorInput
+  claimedAssignments?: Prisma.AssignmentCreateNestedManyWithoutClaimedByInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutInvitedByInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutRespondedByInput
+  comments?: Prisma.ReportCommentCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -277,6 +313,15 @@ export type UserUncheckedCreateInput = {
   updatedAt?: Date | string
   memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutUserInput
   createdTeams?: Prisma.TeamUncheckedCreateNestedManyWithoutCreatedByInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedParticipations?: Prisma.EventParticipationUncheckedCreateNestedManyWithoutReviewedByInput
+  submittedReports?: Prisma.ReportUncheckedCreateNestedManyWithoutSubmittedByInput
+  reportHistory?: Prisma.ReportHistoryUncheckedCreateNestedManyWithoutActorInput
+  claimedAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutClaimedByInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutInvitedByInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutRespondedByInput
+  comments?: Prisma.ReportCommentUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -289,6 +334,15 @@ export type UserUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.OrganizationMembershipUpdateManyWithoutUserNestedInput
   createdTeams?: Prisma.TeamUpdateManyWithoutCreatedByNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  reviewedParticipations?: Prisma.EventParticipationUpdateManyWithoutReviewedByNestedInput
+  submittedReports?: Prisma.ReportUpdateManyWithoutSubmittedByNestedInput
+  reportHistory?: Prisma.ReportHistoryUpdateManyWithoutActorNestedInput
+  claimedAssignments?: Prisma.AssignmentUpdateManyWithoutClaimedByNestedInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutInvitedByNestedInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutRespondedByNestedInput
+  comments?: Prisma.ReportCommentUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -301,6 +355,15 @@ export type UserUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutUserNestedInput
   createdTeams?: Prisma.TeamUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedParticipations?: Prisma.EventParticipationUncheckedUpdateManyWithoutReviewedByNestedInput
+  submittedReports?: Prisma.ReportUncheckedUpdateManyWithoutSubmittedByNestedInput
+  reportHistory?: Prisma.ReportHistoryUncheckedUpdateManyWithoutActorNestedInput
+  claimedAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutClaimedByNestedInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutInvitedByNestedInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutRespondedByNestedInput
+  comments?: Prisma.ReportCommentUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -368,6 +431,11 @@ export type UserScalarRelationFilter = {
   isNot?: Prisma.UserWhereInput
 }
 
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -408,6 +476,130 @@ export type UserUpdateOneRequiredWithoutCreatedTeamsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedTeamsInput, Prisma.UserUpdateWithoutCreatedTeamsInput>, Prisma.UserUncheckedUpdateWithoutCreatedTeamsInput>
 }
 
+export type UserCreateNestedOneWithoutCreatedEventsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedEventsInput, Prisma.UserUncheckedCreateWithoutCreatedEventsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedEventsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCreatedEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedEventsInput, Prisma.UserUncheckedCreateWithoutCreatedEventsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedEventsInput
+  upsert?: Prisma.UserUpsertWithoutCreatedEventsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedEventsInput, Prisma.UserUpdateWithoutCreatedEventsInput>, Prisma.UserUncheckedUpdateWithoutCreatedEventsInput>
+}
+
+export type UserCreateNestedOneWithoutReviewedParticipationsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedParticipationsInput, Prisma.UserUncheckedCreateWithoutReviewedParticipationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedParticipationsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutReviewedParticipationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedParticipationsInput, Prisma.UserUncheckedCreateWithoutReviewedParticipationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedParticipationsInput
+  upsert?: Prisma.UserUpsertWithoutReviewedParticipationsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewedParticipationsInput, Prisma.UserUpdateWithoutReviewedParticipationsInput>, Prisma.UserUncheckedUpdateWithoutReviewedParticipationsInput>
+}
+
+export type UserUpdateOneRequiredWithoutSubmittedReportsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSubmittedReportsInput, Prisma.UserUncheckedCreateWithoutSubmittedReportsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubmittedReportsInput
+  upsert?: Prisma.UserUpsertWithoutSubmittedReportsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSubmittedReportsInput, Prisma.UserUpdateWithoutSubmittedReportsInput>, Prisma.UserUncheckedUpdateWithoutSubmittedReportsInput>
+}
+
+export type UserCreateNestedOneWithoutReportHistoryInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReportHistoryInput, Prisma.UserUncheckedCreateWithoutReportHistoryInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReportHistoryInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutReportHistoryNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReportHistoryInput, Prisma.UserUncheckedCreateWithoutReportHistoryInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReportHistoryInput
+  upsert?: Prisma.UserUpsertWithoutReportHistoryInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReportHistoryInput, Prisma.UserUpdateWithoutReportHistoryInput>, Prisma.UserUncheckedUpdateWithoutReportHistoryInput>
+}
+
+export type UserCreateNestedOneWithoutClaimedAssignmentsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutClaimedAssignmentsInput, Prisma.UserUncheckedCreateWithoutClaimedAssignmentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutClaimedAssignmentsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutClaimedAssignmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutClaimedAssignmentsInput, Prisma.UserUncheckedCreateWithoutClaimedAssignmentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutClaimedAssignmentsInput
+  upsert?: Prisma.UserUpsertWithoutClaimedAssignmentsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutClaimedAssignmentsInput, Prisma.UserUpdateWithoutClaimedAssignmentsInput>, Prisma.UserUncheckedUpdateWithoutClaimedAssignmentsInput>
+}
+
+export type UserCreateNestedOneWithoutInvitedCollaborationsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutInvitedCollaborationsInput, Prisma.UserUncheckedCreateWithoutInvitedCollaborationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutInvitedCollaborationsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutRespondedCollaborationsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRespondedCollaborationsInput, Prisma.UserUncheckedCreateWithoutRespondedCollaborationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRespondedCollaborationsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutInvitedCollaborationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutInvitedCollaborationsInput, Prisma.UserUncheckedCreateWithoutInvitedCollaborationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutInvitedCollaborationsInput
+  upsert?: Prisma.UserUpsertWithoutInvitedCollaborationsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutInvitedCollaborationsInput, Prisma.UserUpdateWithoutInvitedCollaborationsInput>, Prisma.UserUncheckedUpdateWithoutInvitedCollaborationsInput>
+}
+
+export type UserUpdateOneWithoutRespondedCollaborationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRespondedCollaborationsInput, Prisma.UserUncheckedCreateWithoutRespondedCollaborationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRespondedCollaborationsInput
+  upsert?: Prisma.UserUpsertWithoutRespondedCollaborationsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRespondedCollaborationsInput, Prisma.UserUpdateWithoutRespondedCollaborationsInput>, Prisma.UserUncheckedUpdateWithoutRespondedCollaborationsInput>
+}
+
+export type UserCreateNestedOneWithoutCommentsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCommentsInput, Prisma.UserUncheckedCreateWithoutCommentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCommentsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCommentsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCommentsInput, Prisma.UserUncheckedCreateWithoutCommentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCommentsInput
+  upsert?: Prisma.UserUpsertWithoutCommentsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCommentsInput, Prisma.UserUpdateWithoutCommentsInput>, Prisma.UserUncheckedUpdateWithoutCommentsInput>
+}
+
+export type UserCreateNestedOneWithoutNotificationsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNotificationsInput, Prisma.UserUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNotificationsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutNotificationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNotificationsInput, Prisma.UserUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNotificationsInput
+  upsert?: Prisma.UserUpsertWithoutNotificationsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNotificationsInput, Prisma.UserUpdateWithoutNotificationsInput>, Prisma.UserUncheckedUpdateWithoutNotificationsInput>
+}
+
 export type UserCreateWithoutMembershipsInput = {
   id?: string
   name: string
@@ -417,6 +609,15 @@ export type UserCreateWithoutMembershipsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   createdTeams?: Prisma.TeamCreateNestedManyWithoutCreatedByInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  reviewedParticipations?: Prisma.EventParticipationCreateNestedManyWithoutReviewedByInput
+  submittedReports?: Prisma.ReportCreateNestedManyWithoutSubmittedByInput
+  reportHistory?: Prisma.ReportHistoryCreateNestedManyWithoutActorInput
+  claimedAssignments?: Prisma.AssignmentCreateNestedManyWithoutClaimedByInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutInvitedByInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutRespondedByInput
+  comments?: Prisma.ReportCommentCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMembershipsInput = {
@@ -428,6 +629,15 @@ export type UserUncheckedCreateWithoutMembershipsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   createdTeams?: Prisma.TeamUncheckedCreateNestedManyWithoutCreatedByInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedParticipations?: Prisma.EventParticipationUncheckedCreateNestedManyWithoutReviewedByInput
+  submittedReports?: Prisma.ReportUncheckedCreateNestedManyWithoutSubmittedByInput
+  reportHistory?: Prisma.ReportHistoryUncheckedCreateNestedManyWithoutActorInput
+  claimedAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutClaimedByInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutInvitedByInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutRespondedByInput
+  comments?: Prisma.ReportCommentUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMembershipsInput = {
@@ -455,6 +665,15 @@ export type UserUpdateWithoutMembershipsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdTeams?: Prisma.TeamUpdateManyWithoutCreatedByNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  reviewedParticipations?: Prisma.EventParticipationUpdateManyWithoutReviewedByNestedInput
+  submittedReports?: Prisma.ReportUpdateManyWithoutSubmittedByNestedInput
+  reportHistory?: Prisma.ReportHistoryUpdateManyWithoutActorNestedInput
+  claimedAssignments?: Prisma.AssignmentUpdateManyWithoutClaimedByNestedInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutInvitedByNestedInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutRespondedByNestedInput
+  comments?: Prisma.ReportCommentUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMembershipsInput = {
@@ -466,6 +685,15 @@ export type UserUncheckedUpdateWithoutMembershipsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdTeams?: Prisma.TeamUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedParticipations?: Prisma.EventParticipationUncheckedUpdateManyWithoutReviewedByNestedInput
+  submittedReports?: Prisma.ReportUncheckedUpdateManyWithoutSubmittedByNestedInput
+  reportHistory?: Prisma.ReportHistoryUncheckedUpdateManyWithoutActorNestedInput
+  claimedAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutClaimedByNestedInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutInvitedByNestedInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutRespondedByNestedInput
+  comments?: Prisma.ReportCommentUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCreatedTeamsInput = {
@@ -477,6 +705,15 @@ export type UserCreateWithoutCreatedTeamsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutUserInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  reviewedParticipations?: Prisma.EventParticipationCreateNestedManyWithoutReviewedByInput
+  submittedReports?: Prisma.ReportCreateNestedManyWithoutSubmittedByInput
+  reportHistory?: Prisma.ReportHistoryCreateNestedManyWithoutActorInput
+  claimedAssignments?: Prisma.AssignmentCreateNestedManyWithoutClaimedByInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutInvitedByInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutRespondedByInput
+  comments?: Prisma.ReportCommentCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCreatedTeamsInput = {
@@ -488,6 +725,15 @@ export type UserUncheckedCreateWithoutCreatedTeamsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutUserInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedParticipations?: Prisma.EventParticipationUncheckedCreateNestedManyWithoutReviewedByInput
+  submittedReports?: Prisma.ReportUncheckedCreateNestedManyWithoutSubmittedByInput
+  reportHistory?: Prisma.ReportHistoryUncheckedCreateNestedManyWithoutActorInput
+  claimedAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutClaimedByInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutInvitedByInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutRespondedByInput
+  comments?: Prisma.ReportCommentUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCreatedTeamsInput = {
@@ -515,6 +761,15 @@ export type UserUpdateWithoutCreatedTeamsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.OrganizationMembershipUpdateManyWithoutUserNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  reviewedParticipations?: Prisma.EventParticipationUpdateManyWithoutReviewedByNestedInput
+  submittedReports?: Prisma.ReportUpdateManyWithoutSubmittedByNestedInput
+  reportHistory?: Prisma.ReportHistoryUpdateManyWithoutActorNestedInput
+  claimedAssignments?: Prisma.AssignmentUpdateManyWithoutClaimedByNestedInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutInvitedByNestedInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutRespondedByNestedInput
+  comments?: Prisma.ReportCommentUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedTeamsInput = {
@@ -526,6 +781,879 @@ export type UserUncheckedUpdateWithoutCreatedTeamsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutUserNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedParticipations?: Prisma.EventParticipationUncheckedUpdateManyWithoutReviewedByNestedInput
+  submittedReports?: Prisma.ReportUncheckedUpdateManyWithoutSubmittedByNestedInput
+  reportHistory?: Prisma.ReportHistoryUncheckedUpdateManyWithoutActorNestedInput
+  claimedAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutClaimedByNestedInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutInvitedByNestedInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutRespondedByNestedInput
+  comments?: Prisma.ReportCommentUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutCreatedEventsInput = {
+  id?: string
+  name: string
+  email: string
+  passwordHash: string
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutUserInput
+  createdTeams?: Prisma.TeamCreateNestedManyWithoutCreatedByInput
+  reviewedParticipations?: Prisma.EventParticipationCreateNestedManyWithoutReviewedByInput
+  submittedReports?: Prisma.ReportCreateNestedManyWithoutSubmittedByInput
+  reportHistory?: Prisma.ReportHistoryCreateNestedManyWithoutActorInput
+  claimedAssignments?: Prisma.AssignmentCreateNestedManyWithoutClaimedByInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutInvitedByInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutRespondedByInput
+  comments?: Prisma.ReportCommentCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutCreatedEventsInput = {
+  id?: string
+  name: string
+  email: string
+  passwordHash: string
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutUserInput
+  createdTeams?: Prisma.TeamUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedParticipations?: Prisma.EventParticipationUncheckedCreateNestedManyWithoutReviewedByInput
+  submittedReports?: Prisma.ReportUncheckedCreateNestedManyWithoutSubmittedByInput
+  reportHistory?: Prisma.ReportHistoryUncheckedCreateNestedManyWithoutActorInput
+  claimedAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutClaimedByInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutInvitedByInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutRespondedByInput
+  comments?: Prisma.ReportCommentUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutCreatedEventsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedEventsInput, Prisma.UserUncheckedCreateWithoutCreatedEventsInput>
+}
+
+export type UserUpsertWithoutCreatedEventsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedEventsInput, Prisma.UserUncheckedUpdateWithoutCreatedEventsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedEventsInput, Prisma.UserUncheckedCreateWithoutCreatedEventsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedEventsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedEventsInput, Prisma.UserUncheckedUpdateWithoutCreatedEventsInput>
+}
+
+export type UserUpdateWithoutCreatedEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.OrganizationMembershipUpdateManyWithoutUserNestedInput
+  createdTeams?: Prisma.TeamUpdateManyWithoutCreatedByNestedInput
+  reviewedParticipations?: Prisma.EventParticipationUpdateManyWithoutReviewedByNestedInput
+  submittedReports?: Prisma.ReportUpdateManyWithoutSubmittedByNestedInput
+  reportHistory?: Prisma.ReportHistoryUpdateManyWithoutActorNestedInput
+  claimedAssignments?: Prisma.AssignmentUpdateManyWithoutClaimedByNestedInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutInvitedByNestedInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutRespondedByNestedInput
+  comments?: Prisma.ReportCommentUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutUserNestedInput
+  createdTeams?: Prisma.TeamUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedParticipations?: Prisma.EventParticipationUncheckedUpdateManyWithoutReviewedByNestedInput
+  submittedReports?: Prisma.ReportUncheckedUpdateManyWithoutSubmittedByNestedInput
+  reportHistory?: Prisma.ReportHistoryUncheckedUpdateManyWithoutActorNestedInput
+  claimedAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutClaimedByNestedInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutInvitedByNestedInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutRespondedByNestedInput
+  comments?: Prisma.ReportCommentUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutReviewedParticipationsInput = {
+  id?: string
+  name: string
+  email: string
+  passwordHash: string
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutUserInput
+  createdTeams?: Prisma.TeamCreateNestedManyWithoutCreatedByInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  submittedReports?: Prisma.ReportCreateNestedManyWithoutSubmittedByInput
+  reportHistory?: Prisma.ReportHistoryCreateNestedManyWithoutActorInput
+  claimedAssignments?: Prisma.AssignmentCreateNestedManyWithoutClaimedByInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutInvitedByInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutRespondedByInput
+  comments?: Prisma.ReportCommentCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutReviewedParticipationsInput = {
+  id?: string
+  name: string
+  email: string
+  passwordHash: string
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutUserInput
+  createdTeams?: Prisma.TeamUncheckedCreateNestedManyWithoutCreatedByInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  submittedReports?: Prisma.ReportUncheckedCreateNestedManyWithoutSubmittedByInput
+  reportHistory?: Prisma.ReportHistoryUncheckedCreateNestedManyWithoutActorInput
+  claimedAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutClaimedByInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutInvitedByInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutRespondedByInput
+  comments?: Prisma.ReportCommentUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutReviewedParticipationsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedParticipationsInput, Prisma.UserUncheckedCreateWithoutReviewedParticipationsInput>
+}
+
+export type UserUpsertWithoutReviewedParticipationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReviewedParticipationsInput, Prisma.UserUncheckedUpdateWithoutReviewedParticipationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedParticipationsInput, Prisma.UserUncheckedCreateWithoutReviewedParticipationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReviewedParticipationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReviewedParticipationsInput, Prisma.UserUncheckedUpdateWithoutReviewedParticipationsInput>
+}
+
+export type UserUpdateWithoutReviewedParticipationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.OrganizationMembershipUpdateManyWithoutUserNestedInput
+  createdTeams?: Prisma.TeamUpdateManyWithoutCreatedByNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  submittedReports?: Prisma.ReportUpdateManyWithoutSubmittedByNestedInput
+  reportHistory?: Prisma.ReportHistoryUpdateManyWithoutActorNestedInput
+  claimedAssignments?: Prisma.AssignmentUpdateManyWithoutClaimedByNestedInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutInvitedByNestedInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutRespondedByNestedInput
+  comments?: Prisma.ReportCommentUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReviewedParticipationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutUserNestedInput
+  createdTeams?: Prisma.TeamUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  submittedReports?: Prisma.ReportUncheckedUpdateManyWithoutSubmittedByNestedInput
+  reportHistory?: Prisma.ReportHistoryUncheckedUpdateManyWithoutActorNestedInput
+  claimedAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutClaimedByNestedInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutInvitedByNestedInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutRespondedByNestedInput
+  comments?: Prisma.ReportCommentUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutSubmittedReportsInput = {
+  id?: string
+  name: string
+  email: string
+  passwordHash: string
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutUserInput
+  createdTeams?: Prisma.TeamCreateNestedManyWithoutCreatedByInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  reviewedParticipations?: Prisma.EventParticipationCreateNestedManyWithoutReviewedByInput
+  reportHistory?: Prisma.ReportHistoryCreateNestedManyWithoutActorInput
+  claimedAssignments?: Prisma.AssignmentCreateNestedManyWithoutClaimedByInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutInvitedByInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutRespondedByInput
+  comments?: Prisma.ReportCommentCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutSubmittedReportsInput = {
+  id?: string
+  name: string
+  email: string
+  passwordHash: string
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutUserInput
+  createdTeams?: Prisma.TeamUncheckedCreateNestedManyWithoutCreatedByInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedParticipations?: Prisma.EventParticipationUncheckedCreateNestedManyWithoutReviewedByInput
+  reportHistory?: Prisma.ReportHistoryUncheckedCreateNestedManyWithoutActorInput
+  claimedAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutClaimedByInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutInvitedByInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutRespondedByInput
+  comments?: Prisma.ReportCommentUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutSubmittedReportsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSubmittedReportsInput, Prisma.UserUncheckedCreateWithoutSubmittedReportsInput>
+}
+
+export type UserUpsertWithoutSubmittedReportsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSubmittedReportsInput, Prisma.UserUncheckedUpdateWithoutSubmittedReportsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSubmittedReportsInput, Prisma.UserUncheckedCreateWithoutSubmittedReportsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSubmittedReportsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSubmittedReportsInput, Prisma.UserUncheckedUpdateWithoutSubmittedReportsInput>
+}
+
+export type UserUpdateWithoutSubmittedReportsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.OrganizationMembershipUpdateManyWithoutUserNestedInput
+  createdTeams?: Prisma.TeamUpdateManyWithoutCreatedByNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  reviewedParticipations?: Prisma.EventParticipationUpdateManyWithoutReviewedByNestedInput
+  reportHistory?: Prisma.ReportHistoryUpdateManyWithoutActorNestedInput
+  claimedAssignments?: Prisma.AssignmentUpdateManyWithoutClaimedByNestedInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutInvitedByNestedInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutRespondedByNestedInput
+  comments?: Prisma.ReportCommentUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSubmittedReportsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutUserNestedInput
+  createdTeams?: Prisma.TeamUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedParticipations?: Prisma.EventParticipationUncheckedUpdateManyWithoutReviewedByNestedInput
+  reportHistory?: Prisma.ReportHistoryUncheckedUpdateManyWithoutActorNestedInput
+  claimedAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutClaimedByNestedInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutInvitedByNestedInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutRespondedByNestedInput
+  comments?: Prisma.ReportCommentUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutReportHistoryInput = {
+  id?: string
+  name: string
+  email: string
+  passwordHash: string
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutUserInput
+  createdTeams?: Prisma.TeamCreateNestedManyWithoutCreatedByInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  reviewedParticipations?: Prisma.EventParticipationCreateNestedManyWithoutReviewedByInput
+  submittedReports?: Prisma.ReportCreateNestedManyWithoutSubmittedByInput
+  claimedAssignments?: Prisma.AssignmentCreateNestedManyWithoutClaimedByInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutInvitedByInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutRespondedByInput
+  comments?: Prisma.ReportCommentCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutReportHistoryInput = {
+  id?: string
+  name: string
+  email: string
+  passwordHash: string
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutUserInput
+  createdTeams?: Prisma.TeamUncheckedCreateNestedManyWithoutCreatedByInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedParticipations?: Prisma.EventParticipationUncheckedCreateNestedManyWithoutReviewedByInput
+  submittedReports?: Prisma.ReportUncheckedCreateNestedManyWithoutSubmittedByInput
+  claimedAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutClaimedByInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutInvitedByInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutRespondedByInput
+  comments?: Prisma.ReportCommentUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutReportHistoryInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReportHistoryInput, Prisma.UserUncheckedCreateWithoutReportHistoryInput>
+}
+
+export type UserUpsertWithoutReportHistoryInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReportHistoryInput, Prisma.UserUncheckedUpdateWithoutReportHistoryInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReportHistoryInput, Prisma.UserUncheckedCreateWithoutReportHistoryInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReportHistoryInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReportHistoryInput, Prisma.UserUncheckedUpdateWithoutReportHistoryInput>
+}
+
+export type UserUpdateWithoutReportHistoryInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.OrganizationMembershipUpdateManyWithoutUserNestedInput
+  createdTeams?: Prisma.TeamUpdateManyWithoutCreatedByNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  reviewedParticipations?: Prisma.EventParticipationUpdateManyWithoutReviewedByNestedInput
+  submittedReports?: Prisma.ReportUpdateManyWithoutSubmittedByNestedInput
+  claimedAssignments?: Prisma.AssignmentUpdateManyWithoutClaimedByNestedInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutInvitedByNestedInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutRespondedByNestedInput
+  comments?: Prisma.ReportCommentUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReportHistoryInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutUserNestedInput
+  createdTeams?: Prisma.TeamUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedParticipations?: Prisma.EventParticipationUncheckedUpdateManyWithoutReviewedByNestedInput
+  submittedReports?: Prisma.ReportUncheckedUpdateManyWithoutSubmittedByNestedInput
+  claimedAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutClaimedByNestedInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutInvitedByNestedInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutRespondedByNestedInput
+  comments?: Prisma.ReportCommentUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutClaimedAssignmentsInput = {
+  id?: string
+  name: string
+  email: string
+  passwordHash: string
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutUserInput
+  createdTeams?: Prisma.TeamCreateNestedManyWithoutCreatedByInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  reviewedParticipations?: Prisma.EventParticipationCreateNestedManyWithoutReviewedByInput
+  submittedReports?: Prisma.ReportCreateNestedManyWithoutSubmittedByInput
+  reportHistory?: Prisma.ReportHistoryCreateNestedManyWithoutActorInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutInvitedByInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutRespondedByInput
+  comments?: Prisma.ReportCommentCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutClaimedAssignmentsInput = {
+  id?: string
+  name: string
+  email: string
+  passwordHash: string
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutUserInput
+  createdTeams?: Prisma.TeamUncheckedCreateNestedManyWithoutCreatedByInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedParticipations?: Prisma.EventParticipationUncheckedCreateNestedManyWithoutReviewedByInput
+  submittedReports?: Prisma.ReportUncheckedCreateNestedManyWithoutSubmittedByInput
+  reportHistory?: Prisma.ReportHistoryUncheckedCreateNestedManyWithoutActorInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutInvitedByInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutRespondedByInput
+  comments?: Prisma.ReportCommentUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutClaimedAssignmentsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutClaimedAssignmentsInput, Prisma.UserUncheckedCreateWithoutClaimedAssignmentsInput>
+}
+
+export type UserUpsertWithoutClaimedAssignmentsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutClaimedAssignmentsInput, Prisma.UserUncheckedUpdateWithoutClaimedAssignmentsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutClaimedAssignmentsInput, Prisma.UserUncheckedCreateWithoutClaimedAssignmentsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutClaimedAssignmentsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutClaimedAssignmentsInput, Prisma.UserUncheckedUpdateWithoutClaimedAssignmentsInput>
+}
+
+export type UserUpdateWithoutClaimedAssignmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.OrganizationMembershipUpdateManyWithoutUserNestedInput
+  createdTeams?: Prisma.TeamUpdateManyWithoutCreatedByNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  reviewedParticipations?: Prisma.EventParticipationUpdateManyWithoutReviewedByNestedInput
+  submittedReports?: Prisma.ReportUpdateManyWithoutSubmittedByNestedInput
+  reportHistory?: Prisma.ReportHistoryUpdateManyWithoutActorNestedInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutInvitedByNestedInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutRespondedByNestedInput
+  comments?: Prisma.ReportCommentUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutClaimedAssignmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutUserNestedInput
+  createdTeams?: Prisma.TeamUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedParticipations?: Prisma.EventParticipationUncheckedUpdateManyWithoutReviewedByNestedInput
+  submittedReports?: Prisma.ReportUncheckedUpdateManyWithoutSubmittedByNestedInput
+  reportHistory?: Prisma.ReportHistoryUncheckedUpdateManyWithoutActorNestedInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutInvitedByNestedInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutRespondedByNestedInput
+  comments?: Prisma.ReportCommentUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutInvitedCollaborationsInput = {
+  id?: string
+  name: string
+  email: string
+  passwordHash: string
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutUserInput
+  createdTeams?: Prisma.TeamCreateNestedManyWithoutCreatedByInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  reviewedParticipations?: Prisma.EventParticipationCreateNestedManyWithoutReviewedByInput
+  submittedReports?: Prisma.ReportCreateNestedManyWithoutSubmittedByInput
+  reportHistory?: Prisma.ReportHistoryCreateNestedManyWithoutActorInput
+  claimedAssignments?: Prisma.AssignmentCreateNestedManyWithoutClaimedByInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutRespondedByInput
+  comments?: Prisma.ReportCommentCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutInvitedCollaborationsInput = {
+  id?: string
+  name: string
+  email: string
+  passwordHash: string
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutUserInput
+  createdTeams?: Prisma.TeamUncheckedCreateNestedManyWithoutCreatedByInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedParticipations?: Prisma.EventParticipationUncheckedCreateNestedManyWithoutReviewedByInput
+  submittedReports?: Prisma.ReportUncheckedCreateNestedManyWithoutSubmittedByInput
+  reportHistory?: Prisma.ReportHistoryUncheckedCreateNestedManyWithoutActorInput
+  claimedAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutClaimedByInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutRespondedByInput
+  comments?: Prisma.ReportCommentUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutInvitedCollaborationsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutInvitedCollaborationsInput, Prisma.UserUncheckedCreateWithoutInvitedCollaborationsInput>
+}
+
+export type UserCreateWithoutRespondedCollaborationsInput = {
+  id?: string
+  name: string
+  email: string
+  passwordHash: string
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutUserInput
+  createdTeams?: Prisma.TeamCreateNestedManyWithoutCreatedByInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  reviewedParticipations?: Prisma.EventParticipationCreateNestedManyWithoutReviewedByInput
+  submittedReports?: Prisma.ReportCreateNestedManyWithoutSubmittedByInput
+  reportHistory?: Prisma.ReportHistoryCreateNestedManyWithoutActorInput
+  claimedAssignments?: Prisma.AssignmentCreateNestedManyWithoutClaimedByInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutInvitedByInput
+  comments?: Prisma.ReportCommentCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutRespondedCollaborationsInput = {
+  id?: string
+  name: string
+  email: string
+  passwordHash: string
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutUserInput
+  createdTeams?: Prisma.TeamUncheckedCreateNestedManyWithoutCreatedByInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedParticipations?: Prisma.EventParticipationUncheckedCreateNestedManyWithoutReviewedByInput
+  submittedReports?: Prisma.ReportUncheckedCreateNestedManyWithoutSubmittedByInput
+  reportHistory?: Prisma.ReportHistoryUncheckedCreateNestedManyWithoutActorInput
+  claimedAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutClaimedByInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutInvitedByInput
+  comments?: Prisma.ReportCommentUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutRespondedCollaborationsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutRespondedCollaborationsInput, Prisma.UserUncheckedCreateWithoutRespondedCollaborationsInput>
+}
+
+export type UserUpsertWithoutInvitedCollaborationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutInvitedCollaborationsInput, Prisma.UserUncheckedUpdateWithoutInvitedCollaborationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutInvitedCollaborationsInput, Prisma.UserUncheckedCreateWithoutInvitedCollaborationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutInvitedCollaborationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutInvitedCollaborationsInput, Prisma.UserUncheckedUpdateWithoutInvitedCollaborationsInput>
+}
+
+export type UserUpdateWithoutInvitedCollaborationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.OrganizationMembershipUpdateManyWithoutUserNestedInput
+  createdTeams?: Prisma.TeamUpdateManyWithoutCreatedByNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  reviewedParticipations?: Prisma.EventParticipationUpdateManyWithoutReviewedByNestedInput
+  submittedReports?: Prisma.ReportUpdateManyWithoutSubmittedByNestedInput
+  reportHistory?: Prisma.ReportHistoryUpdateManyWithoutActorNestedInput
+  claimedAssignments?: Prisma.AssignmentUpdateManyWithoutClaimedByNestedInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutRespondedByNestedInput
+  comments?: Prisma.ReportCommentUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutInvitedCollaborationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutUserNestedInput
+  createdTeams?: Prisma.TeamUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedParticipations?: Prisma.EventParticipationUncheckedUpdateManyWithoutReviewedByNestedInput
+  submittedReports?: Prisma.ReportUncheckedUpdateManyWithoutSubmittedByNestedInput
+  reportHistory?: Prisma.ReportHistoryUncheckedUpdateManyWithoutActorNestedInput
+  claimedAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutClaimedByNestedInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutRespondedByNestedInput
+  comments?: Prisma.ReportCommentUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserUpsertWithoutRespondedCollaborationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutRespondedCollaborationsInput, Prisma.UserUncheckedUpdateWithoutRespondedCollaborationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutRespondedCollaborationsInput, Prisma.UserUncheckedCreateWithoutRespondedCollaborationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutRespondedCollaborationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutRespondedCollaborationsInput, Prisma.UserUncheckedUpdateWithoutRespondedCollaborationsInput>
+}
+
+export type UserUpdateWithoutRespondedCollaborationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.OrganizationMembershipUpdateManyWithoutUserNestedInput
+  createdTeams?: Prisma.TeamUpdateManyWithoutCreatedByNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  reviewedParticipations?: Prisma.EventParticipationUpdateManyWithoutReviewedByNestedInput
+  submittedReports?: Prisma.ReportUpdateManyWithoutSubmittedByNestedInput
+  reportHistory?: Prisma.ReportHistoryUpdateManyWithoutActorNestedInput
+  claimedAssignments?: Prisma.AssignmentUpdateManyWithoutClaimedByNestedInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutInvitedByNestedInput
+  comments?: Prisma.ReportCommentUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutRespondedCollaborationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutUserNestedInput
+  createdTeams?: Prisma.TeamUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedParticipations?: Prisma.EventParticipationUncheckedUpdateManyWithoutReviewedByNestedInput
+  submittedReports?: Prisma.ReportUncheckedUpdateManyWithoutSubmittedByNestedInput
+  reportHistory?: Prisma.ReportHistoryUncheckedUpdateManyWithoutActorNestedInput
+  claimedAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutClaimedByNestedInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutInvitedByNestedInput
+  comments?: Prisma.ReportCommentUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutCommentsInput = {
+  id?: string
+  name: string
+  email: string
+  passwordHash: string
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutUserInput
+  createdTeams?: Prisma.TeamCreateNestedManyWithoutCreatedByInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  reviewedParticipations?: Prisma.EventParticipationCreateNestedManyWithoutReviewedByInput
+  submittedReports?: Prisma.ReportCreateNestedManyWithoutSubmittedByInput
+  reportHistory?: Prisma.ReportHistoryCreateNestedManyWithoutActorInput
+  claimedAssignments?: Prisma.AssignmentCreateNestedManyWithoutClaimedByInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutInvitedByInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutRespondedByInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutCommentsInput = {
+  id?: string
+  name: string
+  email: string
+  passwordHash: string
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutUserInput
+  createdTeams?: Prisma.TeamUncheckedCreateNestedManyWithoutCreatedByInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedParticipations?: Prisma.EventParticipationUncheckedCreateNestedManyWithoutReviewedByInput
+  submittedReports?: Prisma.ReportUncheckedCreateNestedManyWithoutSubmittedByInput
+  reportHistory?: Prisma.ReportHistoryUncheckedCreateNestedManyWithoutActorInput
+  claimedAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutClaimedByInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutInvitedByInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutRespondedByInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutCommentsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCommentsInput, Prisma.UserUncheckedCreateWithoutCommentsInput>
+}
+
+export type UserUpsertWithoutCommentsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCommentsInput, Prisma.UserUncheckedUpdateWithoutCommentsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCommentsInput, Prisma.UserUncheckedCreateWithoutCommentsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCommentsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCommentsInput, Prisma.UserUncheckedUpdateWithoutCommentsInput>
+}
+
+export type UserUpdateWithoutCommentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.OrganizationMembershipUpdateManyWithoutUserNestedInput
+  createdTeams?: Prisma.TeamUpdateManyWithoutCreatedByNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  reviewedParticipations?: Prisma.EventParticipationUpdateManyWithoutReviewedByNestedInput
+  submittedReports?: Prisma.ReportUpdateManyWithoutSubmittedByNestedInput
+  reportHistory?: Prisma.ReportHistoryUpdateManyWithoutActorNestedInput
+  claimedAssignments?: Prisma.AssignmentUpdateManyWithoutClaimedByNestedInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutInvitedByNestedInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutRespondedByNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCommentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutUserNestedInput
+  createdTeams?: Prisma.TeamUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedParticipations?: Prisma.EventParticipationUncheckedUpdateManyWithoutReviewedByNestedInput
+  submittedReports?: Prisma.ReportUncheckedUpdateManyWithoutSubmittedByNestedInput
+  reportHistory?: Prisma.ReportHistoryUncheckedUpdateManyWithoutActorNestedInput
+  claimedAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutClaimedByNestedInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutInvitedByNestedInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutRespondedByNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutNotificationsInput = {
+  id?: string
+  name: string
+  email: string
+  passwordHash: string
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.OrganizationMembershipCreateNestedManyWithoutUserInput
+  createdTeams?: Prisma.TeamCreateNestedManyWithoutCreatedByInput
+  createdEvents?: Prisma.EventCreateNestedManyWithoutCreatedByInput
+  reviewedParticipations?: Prisma.EventParticipationCreateNestedManyWithoutReviewedByInput
+  submittedReports?: Prisma.ReportCreateNestedManyWithoutSubmittedByInput
+  reportHistory?: Prisma.ReportHistoryCreateNestedManyWithoutActorInput
+  claimedAssignments?: Prisma.AssignmentCreateNestedManyWithoutClaimedByInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutInvitedByInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationCreateNestedManyWithoutRespondedByInput
+  comments?: Prisma.ReportCommentCreateNestedManyWithoutAuthorInput
+}
+
+export type UserUncheckedCreateWithoutNotificationsInput = {
+  id?: string
+  name: string
+  email: string
+  passwordHash: string
+  isPlatformAdmin?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.OrganizationMembershipUncheckedCreateNestedManyWithoutUserInput
+  createdTeams?: Prisma.TeamUncheckedCreateNestedManyWithoutCreatedByInput
+  createdEvents?: Prisma.EventUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedParticipations?: Prisma.EventParticipationUncheckedCreateNestedManyWithoutReviewedByInput
+  submittedReports?: Prisma.ReportUncheckedCreateNestedManyWithoutSubmittedByInput
+  reportHistory?: Prisma.ReportHistoryUncheckedCreateNestedManyWithoutActorInput
+  claimedAssignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutClaimedByInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutInvitedByInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUncheckedCreateNestedManyWithoutRespondedByInput
+  comments?: Prisma.ReportCommentUncheckedCreateNestedManyWithoutAuthorInput
+}
+
+export type UserCreateOrConnectWithoutNotificationsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutNotificationsInput, Prisma.UserUncheckedCreateWithoutNotificationsInput>
+}
+
+export type UserUpsertWithoutNotificationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutNotificationsInput, Prisma.UserUncheckedUpdateWithoutNotificationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutNotificationsInput, Prisma.UserUncheckedCreateWithoutNotificationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutNotificationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutNotificationsInput, Prisma.UserUncheckedUpdateWithoutNotificationsInput>
+}
+
+export type UserUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.OrganizationMembershipUpdateManyWithoutUserNestedInput
+  createdTeams?: Prisma.TeamUpdateManyWithoutCreatedByNestedInput
+  createdEvents?: Prisma.EventUpdateManyWithoutCreatedByNestedInput
+  reviewedParticipations?: Prisma.EventParticipationUpdateManyWithoutReviewedByNestedInput
+  submittedReports?: Prisma.ReportUpdateManyWithoutSubmittedByNestedInput
+  reportHistory?: Prisma.ReportHistoryUpdateManyWithoutActorNestedInput
+  claimedAssignments?: Prisma.AssignmentUpdateManyWithoutClaimedByNestedInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutInvitedByNestedInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUpdateManyWithoutRespondedByNestedInput
+  comments?: Prisma.ReportCommentUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isPlatformAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.OrganizationMembershipUncheckedUpdateManyWithoutUserNestedInput
+  createdTeams?: Prisma.TeamUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdEvents?: Prisma.EventUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedParticipations?: Prisma.EventParticipationUncheckedUpdateManyWithoutReviewedByNestedInput
+  submittedReports?: Prisma.ReportUncheckedUpdateManyWithoutSubmittedByNestedInput
+  reportHistory?: Prisma.ReportHistoryUncheckedUpdateManyWithoutActorNestedInput
+  claimedAssignments?: Prisma.AssignmentUncheckedUpdateManyWithoutClaimedByNestedInput
+  invitedCollaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutInvitedByNestedInput
+  respondedCollaborations?: Prisma.AssignmentCollaborationUncheckedUpdateManyWithoutRespondedByNestedInput
+  comments?: Prisma.ReportCommentUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
 
@@ -536,11 +1664,29 @@ export type UserUncheckedUpdateWithoutCreatedTeamsInput = {
 export type UserCountOutputType = {
   memberships: number
   createdTeams: number
+  createdEvents: number
+  reviewedParticipations: number
+  submittedReports: number
+  reportHistory: number
+  claimedAssignments: number
+  invitedCollaborations: number
+  respondedCollaborations: number
+  comments: number
+  notifications: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   memberships?: boolean | UserCountOutputTypeCountMembershipsArgs
   createdTeams?: boolean | UserCountOutputTypeCountCreatedTeamsArgs
+  createdEvents?: boolean | UserCountOutputTypeCountCreatedEventsArgs
+  reviewedParticipations?: boolean | UserCountOutputTypeCountReviewedParticipationsArgs
+  submittedReports?: boolean | UserCountOutputTypeCountSubmittedReportsArgs
+  reportHistory?: boolean | UserCountOutputTypeCountReportHistoryArgs
+  claimedAssignments?: boolean | UserCountOutputTypeCountClaimedAssignmentsArgs
+  invitedCollaborations?: boolean | UserCountOutputTypeCountInvitedCollaborationsArgs
+  respondedCollaborations?: boolean | UserCountOutputTypeCountRespondedCollaborationsArgs
+  comments?: boolean | UserCountOutputTypeCountCommentsArgs
+  notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
 }
 
 /**
@@ -567,6 +1713,69 @@ export type UserCountOutputTypeCountCreatedTeamsArgs<ExtArgs extends runtime.Typ
   where?: Prisma.TeamWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EventWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReviewedParticipationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EventParticipationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSubmittedReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReportWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReportHistoryArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReportHistoryWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountClaimedAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AssignmentWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountInvitedCollaborationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AssignmentCollaborationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRespondedCollaborationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AssignmentCollaborationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCommentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReportCommentWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NotificationWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -578,6 +1787,15 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedAt?: boolean
   memberships?: boolean | Prisma.User$membershipsArgs<ExtArgs>
   createdTeams?: boolean | Prisma.User$createdTeamsArgs<ExtArgs>
+  createdEvents?: boolean | Prisma.User$createdEventsArgs<ExtArgs>
+  reviewedParticipations?: boolean | Prisma.User$reviewedParticipationsArgs<ExtArgs>
+  submittedReports?: boolean | Prisma.User$submittedReportsArgs<ExtArgs>
+  reportHistory?: boolean | Prisma.User$reportHistoryArgs<ExtArgs>
+  claimedAssignments?: boolean | Prisma.User$claimedAssignmentsArgs<ExtArgs>
+  invitedCollaborations?: boolean | Prisma.User$invitedCollaborationsArgs<ExtArgs>
+  respondedCollaborations?: boolean | Prisma.User$respondedCollaborationsArgs<ExtArgs>
+  comments?: boolean | Prisma.User$commentsArgs<ExtArgs>
+  notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -615,6 +1833,15 @@ export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = run
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   memberships?: boolean | Prisma.User$membershipsArgs<ExtArgs>
   createdTeams?: boolean | Prisma.User$createdTeamsArgs<ExtArgs>
+  createdEvents?: boolean | Prisma.User$createdEventsArgs<ExtArgs>
+  reviewedParticipations?: boolean | Prisma.User$reviewedParticipationsArgs<ExtArgs>
+  submittedReports?: boolean | Prisma.User$submittedReportsArgs<ExtArgs>
+  reportHistory?: boolean | Prisma.User$reportHistoryArgs<ExtArgs>
+  claimedAssignments?: boolean | Prisma.User$claimedAssignmentsArgs<ExtArgs>
+  invitedCollaborations?: boolean | Prisma.User$invitedCollaborationsArgs<ExtArgs>
+  respondedCollaborations?: boolean | Prisma.User$respondedCollaborationsArgs<ExtArgs>
+  comments?: boolean | Prisma.User$commentsArgs<ExtArgs>
+  notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -625,6 +1852,15 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     memberships: Prisma.$OrganizationMembershipPayload<ExtArgs>[]
     createdTeams: Prisma.$TeamPayload<ExtArgs>[]
+    createdEvents: Prisma.$EventPayload<ExtArgs>[]
+    reviewedParticipations: Prisma.$EventParticipationPayload<ExtArgs>[]
+    submittedReports: Prisma.$ReportPayload<ExtArgs>[]
+    reportHistory: Prisma.$ReportHistoryPayload<ExtArgs>[]
+    claimedAssignments: Prisma.$AssignmentPayload<ExtArgs>[]
+    invitedCollaborations: Prisma.$AssignmentCollaborationPayload<ExtArgs>[]
+    respondedCollaborations: Prisma.$AssignmentCollaborationPayload<ExtArgs>[]
+    comments: Prisma.$ReportCommentPayload<ExtArgs>[]
+    notifications: Prisma.$NotificationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1030,6 +2266,15 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   memberships<T extends Prisma.User$membershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$membershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrganizationMembershipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   createdTeams<T extends Prisma.User$createdTeamsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdTeamsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdEvents<T extends Prisma.User$createdEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviewedParticipations<T extends Prisma.User$reviewedParticipationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewedParticipationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventParticipationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  submittedReports<T extends Prisma.User$submittedReportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$submittedReportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reportHistory<T extends Prisma.User$reportHistoryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reportHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReportHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  claimedAssignments<T extends Prisma.User$claimedAssignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$claimedAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  invitedCollaborations<T extends Prisma.User$invitedCollaborationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$invitedCollaborationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssignmentCollaborationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  respondedCollaborations<T extends Prisma.User$respondedCollaborationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$respondedCollaborationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssignmentCollaborationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  comments<T extends Prisma.User$commentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReportCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1504,6 +2749,222 @@ export type User$createdTeamsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.TeamScalarFieldEnum | Prisma.TeamScalarFieldEnum[]
+}
+
+/**
+ * User.createdEvents
+ */
+export type User$createdEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Event
+   */
+  select?: Prisma.EventSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Event
+   */
+  omit?: Prisma.EventOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EventInclude<ExtArgs> | null
+  where?: Prisma.EventWhereInput
+  orderBy?: Prisma.EventOrderByWithRelationInput | Prisma.EventOrderByWithRelationInput[]
+  cursor?: Prisma.EventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EventScalarFieldEnum | Prisma.EventScalarFieldEnum[]
+}
+
+/**
+ * User.reviewedParticipations
+ */
+export type User$reviewedParticipationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EventParticipation
+   */
+  select?: Prisma.EventParticipationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EventParticipation
+   */
+  omit?: Prisma.EventParticipationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EventParticipationInclude<ExtArgs> | null
+  where?: Prisma.EventParticipationWhereInput
+  orderBy?: Prisma.EventParticipationOrderByWithRelationInput | Prisma.EventParticipationOrderByWithRelationInput[]
+  cursor?: Prisma.EventParticipationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EventParticipationScalarFieldEnum | Prisma.EventParticipationScalarFieldEnum[]
+}
+
+/**
+ * User.submittedReports
+ */
+export type User$submittedReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Report
+   */
+  select?: Prisma.ReportSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Report
+   */
+  omit?: Prisma.ReportOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReportInclude<ExtArgs> | null
+  where?: Prisma.ReportWhereInput
+  orderBy?: Prisma.ReportOrderByWithRelationInput | Prisma.ReportOrderByWithRelationInput[]
+  cursor?: Prisma.ReportWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReportScalarFieldEnum | Prisma.ReportScalarFieldEnum[]
+}
+
+/**
+ * User.reportHistory
+ */
+export type User$reportHistoryArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ReportHistory
+   */
+  select?: Prisma.ReportHistorySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ReportHistory
+   */
+  omit?: Prisma.ReportHistoryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReportHistoryInclude<ExtArgs> | null
+  where?: Prisma.ReportHistoryWhereInput
+  orderBy?: Prisma.ReportHistoryOrderByWithRelationInput | Prisma.ReportHistoryOrderByWithRelationInput[]
+  cursor?: Prisma.ReportHistoryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReportHistoryScalarFieldEnum | Prisma.ReportHistoryScalarFieldEnum[]
+}
+
+/**
+ * User.claimedAssignments
+ */
+export type User$claimedAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Assignment
+   */
+  select?: Prisma.AssignmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Assignment
+   */
+  omit?: Prisma.AssignmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AssignmentInclude<ExtArgs> | null
+  where?: Prisma.AssignmentWhereInput
+  orderBy?: Prisma.AssignmentOrderByWithRelationInput | Prisma.AssignmentOrderByWithRelationInput[]
+  cursor?: Prisma.AssignmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AssignmentScalarFieldEnum | Prisma.AssignmentScalarFieldEnum[]
+}
+
+/**
+ * User.invitedCollaborations
+ */
+export type User$invitedCollaborationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AssignmentCollaboration
+   */
+  select?: Prisma.AssignmentCollaborationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AssignmentCollaboration
+   */
+  omit?: Prisma.AssignmentCollaborationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AssignmentCollaborationInclude<ExtArgs> | null
+  where?: Prisma.AssignmentCollaborationWhereInput
+  orderBy?: Prisma.AssignmentCollaborationOrderByWithRelationInput | Prisma.AssignmentCollaborationOrderByWithRelationInput[]
+  cursor?: Prisma.AssignmentCollaborationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AssignmentCollaborationScalarFieldEnum | Prisma.AssignmentCollaborationScalarFieldEnum[]
+}
+
+/**
+ * User.respondedCollaborations
+ */
+export type User$respondedCollaborationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AssignmentCollaboration
+   */
+  select?: Prisma.AssignmentCollaborationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AssignmentCollaboration
+   */
+  omit?: Prisma.AssignmentCollaborationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AssignmentCollaborationInclude<ExtArgs> | null
+  where?: Prisma.AssignmentCollaborationWhereInput
+  orderBy?: Prisma.AssignmentCollaborationOrderByWithRelationInput | Prisma.AssignmentCollaborationOrderByWithRelationInput[]
+  cursor?: Prisma.AssignmentCollaborationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AssignmentCollaborationScalarFieldEnum | Prisma.AssignmentCollaborationScalarFieldEnum[]
+}
+
+/**
+ * User.comments
+ */
+export type User$commentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ReportComment
+   */
+  select?: Prisma.ReportCommentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ReportComment
+   */
+  omit?: Prisma.ReportCommentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReportCommentInclude<ExtArgs> | null
+  where?: Prisma.ReportCommentWhereInput
+  orderBy?: Prisma.ReportCommentOrderByWithRelationInput | Prisma.ReportCommentOrderByWithRelationInput[]
+  cursor?: Prisma.ReportCommentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReportCommentScalarFieldEnum | Prisma.ReportCommentScalarFieldEnum[]
+}
+
+/**
+ * User.notifications
+ */
+export type User$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Notification
+   */
+  select?: Prisma.NotificationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Notification
+   */
+  omit?: Prisma.NotificationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NotificationInclude<ExtArgs> | null
+  where?: Prisma.NotificationWhereInput
+  orderBy?: Prisma.NotificationOrderByWithRelationInput | Prisma.NotificationOrderByWithRelationInput[]
+  cursor?: Prisma.NotificationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
 }
 
 /**
